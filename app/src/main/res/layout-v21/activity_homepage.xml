@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/t2_image"
+        android:layout_width="match_parent"
+        android:layout_height="358dp"
+        android:contentDescription="@string/tsquaredlogo"
+        app:srcCompat="@drawable/t2" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/loginScreen"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <Button
+        android:id="@+id/tutorLogin_button"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/t2_orange_dark"
+        android:backgroundTint="@color/t2_orange_light"
+        android:elevation="0dp"
+        android:gravity="center"
+        android:text="@string/tutorLogin"
+        android:textAlignment="center"
+        android:textColor="@android:color/white" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <Button
+        android:id="@+id/tuteeLogin_button"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/t2_orange_dark"
+        android:backgroundTint="@color/t2_orange_light"
+        android:elevation="0dp"
+        android:gravity="center"
+        android:text="@string/tuteeLogin"
+        android:textAlignment="center"
+        android:textColor="@android:color/white" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:id="@+id/noAccount_textView"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:text="Dont have an account?"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/register_button"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/t2_orange_darkest"
+        android:backgroundTint="@color/t2_orange_dark"
+        android:elevation="0dp"
+        android:gravity="center"
+        android:text="@string/register"
+        android:textAlignment="center"
+        android:textColor="@android:color/white" />
+</LinearLayout>
