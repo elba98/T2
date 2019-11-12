@@ -29,7 +29,7 @@
     <string name="tutorLogin">Tutor Login</string>
     <string name="register">Register Now!</string>
     <string name="username">Username</string>
-    <string name="password">Password</string>
+    <string name="password">Password*</string>
     <string name="login">Login</string>
     <string name="createAccount">Dont have an account?</string>
 

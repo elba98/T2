@@ -3,6 +3,7 @@ package com.cp317.t2.t2;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -66,6 +67,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        // Set up tutor vs tutee in phrase
+        Intent intent = getIntent();
+        String userType = intent.getStringExtra("userType");
+        TextView phrase = (TextView) findViewById(R.id.loginText_textView);
+        phrase.setText("Login with your "+userType+" credentials");
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.username_textEdit);
         populateAutoComplete();
@@ -345,6 +351,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = null;
             showProgress(false);
         }
+    }
+    // This method will be invoked when user click android device Back menu at bottom.
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, HomepageActivity.class);
+        startActivity(intent);
     }
 }
 
