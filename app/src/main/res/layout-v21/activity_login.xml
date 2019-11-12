@@ -130,7 +130,7 @@
                 android:background="@color/t2_orange_dark"
                 android:backgroundTint="@color/t2_orange_light"
                 android:gravity="center_vertical|center"
-                android:text="Login" />
+                android:text="@string/login" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

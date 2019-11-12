@@ -130,7 +130,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:gravity="right|center_horizontal"
         android:orientation="horizontal">
 
         <TextView
@@ -147,8 +146,8 @@
             android:id="@+id/postalCode_editText"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:background="@drawable/edittext_bg"
             android:layout_weight="1"
+            android:background="@drawable/edittext_bg"
             android:ems="10"
             android:inputType="textPersonName" />
     </LinearLayout>

@@ -15,5 +15,22 @@
     </string>
     <string name="login_with_your_tutor_credentials">Login with your Tutor credentials</string>
     <string name="forgot">Forgot your password? "\n"Click Me!</string>
+    <string name="get">Get started by creating a new"\n"account below...</string>
+    <string name="email">Email*</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="continue_button">Continue...</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="last_name">Last Name*</string>
+    <string name="first_name">First Name*</string>
+    <string name="indicates_a_requred_field">* Indicates a requred field</string>
+    <string name="tsquaredlogo">tSquared_logo</string>
+    <string name="loginScreen">Connecting Tutors and Tutees</string>
+    <string name="tuteeLogin">Tutee Login</string>
+    <string name="tutorLogin">Tutor Login</string>
+    <string name="register">Register Now!</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="createAccount">Dont have an account?</string>
 
 </resources>
