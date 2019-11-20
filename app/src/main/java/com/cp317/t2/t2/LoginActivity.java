@@ -98,6 +98,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        //TODO: make forgot password pop up window
+//        TextView forgotPassword_button = (TextView) findViewById(R.id.forgotPassword_textView);
+//        forgotPassword_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                       startActivity(new Intent(this,Pop.class));
+//            }
+//        });
     }
 
     private void populateAutoComplete() {

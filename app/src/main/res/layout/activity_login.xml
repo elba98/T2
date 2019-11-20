@@ -94,7 +94,7 @@
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="30"
-                    android:text="@string/password"
+                    android:text="@string/passwordnostar"
                     android:textAlignment="center"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="18sp" />
@@ -119,7 +119,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:text="@string/forgot"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:clickable="true"
+                android:focusable="true" />
 
             <Button
                 android:id="@+id/login_button"
@@ -130,7 +132,7 @@
                 android:background="@color/t2_orange_dark"
                 android:backgroundTint="@color/t2_orange_light"
                 android:gravity="center_vertical|center"
-                android:text="Login" />
+                android:text="@string/login" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

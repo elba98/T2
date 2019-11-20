@@ -77,7 +77,8 @@
             android:layout_weight="1"
             android:background="@drawable/edittext_bg"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:importantForAutofill="no" />
     </LinearLayout>
 
     <LinearLayout

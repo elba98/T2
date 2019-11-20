@@ -49,7 +49,8 @@
             android:layout_weight="1"
             android:background="@drawable/edittext_bg"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:importantForAutofill="no" />
 
     </LinearLayout>
 
@@ -75,7 +76,8 @@
             android:layout_height="35dp"
             android:background="@drawable/edittext_bg"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:importantForAutofill="no" />
     </LinearLayout>
 
     <LinearLayout
@@ -124,7 +126,8 @@
             android:layout_height="35dp"
             android:background="@drawable/edittext_bg"            android:layout_weight="1"
             android:ems="10"
-            android:inputType="phone" />
+            android:inputType="phone"
+            android:importantForAutofill="no" />
     </LinearLayout>
 
     <LinearLayout
