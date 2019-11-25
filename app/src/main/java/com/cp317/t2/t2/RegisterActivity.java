@@ -57,13 +57,15 @@ public class RegisterActivity extends AppCompatActivity {
         EditText textLastName = (EditText) findViewById(R.id.lastName_editText);
         EditText textPhoneNumber = (EditText) findViewById(R.id.phoneNumber_editText);
         EditText textPostalCode = (EditText) findViewById(R.id.postalCode_editText);
+        EditText textEmail = (EditText) findViewById(R.id.email_editText);
+        EditText textPassword = (EditText) findViewById(R.id.password_editText);
 
         String fName = textFirstName.getText().toString().trim();
         String lName = textLastName.getText().toString().trim();
         String pNumber = textPhoneNumber.getText().toString().trim();
         String pCode = textPostalCode.getText().toString().trim();
-//        String eMail = editTextEmail.getText().toString().trim();
-//        String password = editTextPassword.getText().toString().trim();
+        String eMail = textEmail.getText().toString().trim();
+        String password = textPassword.getText().toString().trim();
 
         if(TextUtils.isEmpty((fName))) {
             Toast.makeText(getApplicationContext(),"First name can not be empty",Toast.LENGTH_SHORT).show();
@@ -89,13 +91,20 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Postal code must be alpha numeric and contain a space",Toast.LENGTH_SHORT).show();
             return false;
         }
-//        if (TextUtils.isEmpty(eMail)) {
-//            Toast.makeText(getApplicationContext(),"Email must not be empty",Toast.LENGTH_SHORT).show();
-//            return false;
-//        } else if (!eMail.matches("^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$")) {
-//            Toast.makeText(getApplicationContext(),"Email invalid",Toast.LENGTH_SHORT).show();
-//            return false;
-//        }
+        if (TextUtils.isEmpty(eMail)) {
+            Toast.makeText(getApplicationContext(),"Email must not be empty",Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (!eMail.matches("^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$")) {
+            Toast.makeText(getApplicationContext(),"Email invalid",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(getApplicationContext(),"Password must not be empty",Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (password.length() < 6) {
+            Toast.makeText(getApplicationContext(),"Password must be at least 6 characters long",Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return true;
     }
 

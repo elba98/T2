@@ -101,7 +101,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-
         mAuth = FirebaseAuth.getInstance();
 
         TextView forgotPassword_button = (TextView) findViewById(R.id.forgotPassword_textView);
@@ -214,13 +213,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
+        return email.matches("^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.length() > 5;
     }
 
     /**
@@ -345,10 +342,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     return pieces[1].equals(mPassword);
                 }
             }
-
-            // TODO: register the new account here.
-//            Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
-//            startActivity(i);
             return true;
         }
 
@@ -372,7 +365,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
     // This method will be invoked when user click android device Back menu at bottom.
-
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, HomepageActivity.class);
