@@ -99,7 +99,7 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Learning Style:"
+        android:text="Learning Style: Visual and auditory"
         tools:layout_editor_absoluteX="48dp"
         tools:layout_editor_absoluteY="583dp" />
 
