@@ -19,13 +19,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
-
-
-
 
 /**
  * Created by chill on 11/12/2019.
@@ -37,15 +30,11 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText editTextPassword;
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
-    DatabaseReference databaseUsers;
-    ArrayList<User> users;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        databaseUsers = FirebaseDatabase.getInstance().getReference("users");
 
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
@@ -53,14 +42,10 @@ public class RegisterActivity extends AppCompatActivity {
         editTextEmail = (EditText) findViewById(R.id.email_editText);
         editTextPassword = (EditText) findViewById(R.id.password_editText);
 
-        users = new ArrayList<>();
-
-
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Validate information
-                addUser();
                 registerUser(validateInfo());
                 //TODO: open homepage
             }
@@ -139,42 +124,24 @@ public class RegisterActivity extends AppCompatActivity {
                                 // Sign in success, update UI with the signed-in user's information
                                 Toast.makeText(getApplicationContext(),"Registered successfully", Toast.LENGTH_SHORT).show();
                                 FirebaseUser user = mAuth.getCurrentUser();
-//                                updateUI(user);
+                                updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Toast.makeText(getApplicationContext(),"Could not register user", Toast.LENGTH_SHORT).show();
 //                                updateUI(null);
+                                progressDialog.hide();
                             }
                         }
                     });
         }
     }
 //    TODO: implement the switch to users homepage and set the correct content for that user
-//    private void updateUI(Object o) {
-//        Intent intent = Intent(this, )
-//    }
-
-    private void addUser() {
-        //getting the values to save
-        EditText textFirstName = (EditText) findViewById(R.id.firstName_editText);
-        EditText textLastName = (EditText) findViewById(R.id.lastName_editText);
-        String fName = textFirstName.getText().toString().trim();
-        String lName = textLastName.getText().toString().trim();
-
-        //getting a unique id using push().getKey() method
-        //it will create a unique id and we will use it as the Primary Key for our User
-        String id = databaseUsers.push().getKey();
-
-        //creating an User Object
-        User user = new User(id, fName, lName);
-
-        //Saving the User
-        databaseUsers.child(id).setValue(user);
-
-
-        //displaying a success toast
-        Toast.makeText(this, "User added", Toast.LENGTH_LONG).show();
+    private void updateUI(Object o) {
+        Intent intent = new Intent(this, DashboardActivity.class);
+        startActivity(intent);
     }
+
+
     // This method will be invoked when user click android device Back menu at bottom.
     @Override
     public void onBackPressed() {

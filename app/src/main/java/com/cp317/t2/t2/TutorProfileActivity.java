@@ -19,7 +19,7 @@ public class TutorProfileActivity extends AppCompatActivity {
             dashboard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(this, DashboardActivity.class);
+                    Intent intent = new Intent(TutorProfileActivity.this, DashboardActivity.class);
                     startActivity(intent);
                 }
             });
@@ -29,7 +29,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         // This method will be invoked when user click android device Back menu at bottom.
         @Override
         public void onBackPressed() {
-            Intent intent = new Intent(this, HomepageActivity.class);
+            Intent intent = new Intent(this, DashboardActivity.class);
             startActivity(intent);
         }
 

@@ -31,7 +31,7 @@ public class SearchByCourseActivity extends AppCompatActivity {
         names.add("CP164");
         names.add("MA121");
 
-        adapter = new ArrayAdapter(this, R.layout.list_item_layout, names);
+        adapter = new ArrayAdapter(this, R.layout.activity_list_item_layout, names);
         list.setAdapter(adapter);
 
         theFilter.addTextChangedListener(new TextWatcher() {
