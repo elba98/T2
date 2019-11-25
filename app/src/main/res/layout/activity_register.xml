@@ -200,7 +200,7 @@
 
         <RadioButton
             android:id="@+id/tutorButton"
-            android:layout_width="136dp"
+            android:layout_width="53dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="Tutor" />
@@ -212,7 +212,7 @@
 
         <RadioButton
             android:id="@+id/tuteeButton"
-            android:layout_width="159dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="Tutee" />
