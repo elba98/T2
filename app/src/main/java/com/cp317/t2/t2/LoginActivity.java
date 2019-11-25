@@ -20,7 +20,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,13 +29,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,14 +104,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mAuth = FirebaseAuth.getInstance();
 
-        //TODO: make forgot password pop up window
-//        TextView forgotPassword_button = (TextView) findViewById(R.id.forgotPassword_textView);
-//        forgotPassword_button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                       startActivity(new Intent(this,Pop.class));
-//            }
-//        });
+        TextView forgotPassword_button = (TextView) findViewById(R.id.forgotPassword_textView);
+        forgotPassword_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                       forgotPassword();
+            }
+        });
+    }
+
+    private void forgotPassword() {
+        //TODO: create forgot password pop up
     }
 
     private void populateAutoComplete() {
@@ -350,8 +347,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
 
             // TODO: register the new account here.
-            Toast toast = Toast.makeText(getApplicationContext(), "Account does not exist", Toast.LENGTH_SHORT);
-            toast.show();
+//            Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
+//            startActivity(i);
             return true;
         }
 
@@ -375,6 +372,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
     // This method will be invoked when user click android device Back menu at bottom.
+
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, HomepageActivity.class);

@@ -1,10 +1,24 @@
 package com.cp317.t2.t2;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * Created by chill on 11/12/2019.
@@ -12,37 +26,108 @@ import android.widget.Button;
 
 public class RegisterActivity extends AppCompatActivity {
     private Button register;
+    private EditText editTextEmail;
+    private EditText editTextPassword;
+    private ProgressDialog progressDialog;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        progressDialog = new ProgressDialog(this);
+        mAuth = FirebaseAuth.getInstance();
         register = (Button) findViewById(R.id.continue_button);
+        editTextEmail = (EditText) findViewById(R.id.email_editText);
+        editTextPassword = (EditText) findViewById(R.id.password_editText);
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Validate information
-//                validateName();
+                registerUser(validateInfo());
                 //TODO: open homepage
             }
         });
     }
 
-//    private boolean validateName() {
-//
-//    }
-//
-//    private boolean validateEmail() {
-//
-//    }
-//
-//    private boolean validatePhoneNumber() {
-//
-//    }
-//
-//    private boolean validatePostalCode() {
-//
+    private Boolean validateInfo() {
+        EditText textFirstName = (EditText) findViewById(R.id.firstName_editText);
+        EditText textLastName = (EditText) findViewById(R.id.lastName_editText);
+        EditText textPhoneNumber = (EditText) findViewById(R.id.phoneNumber_editText);
+        EditText textPostalCode = (EditText) findViewById(R.id.postalCode_editText);
+
+        String fName = textFirstName.getText().toString().trim();
+        String lName = textLastName.getText().toString().trim();
+        String pNumber = textPhoneNumber.getText().toString().trim();
+        String pCode = textPostalCode.getText().toString().trim();
+//        String eMail = editTextEmail.getText().toString().trim();
+//        String password = editTextPassword.getText().toString().trim();
+
+        if(TextUtils.isEmpty((fName))) {
+            Toast.makeText(getApplicationContext(),"First name can not be empty",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if (!fName.matches("[a-zA-Z]+")) {
+            Toast.makeText(getApplicationContext(), "First name must contain letters only", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(TextUtils.isEmpty((lName))) {
+            Toast.makeText(getApplicationContext(),"Last name can not be empty",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        else if (!lName.matches("[a-zA-Z]+")) {
+            Toast.makeText(getApplicationContext(), "Last name must contain letters only", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(!pNumber.matches("[0-9]+")) {
+            Toast.makeText(getApplicationContext(),"Phone number must contain numbers only",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(!pCode.matches("^((\\d{5}-\\d{4})|(\\d{5})|([a-zA-Z]\\d[a-zA-Z]\\s\\d[a-zA-Z]\\d))$")) {
+            Toast.makeText(getApplicationContext(),"Postal code must be alpha numeric and contain a space",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+//        if (TextUtils.isEmpty(eMail)) {
+//            Toast.makeText(getApplicationContext(),"Email must not be empty",Toast.LENGTH_SHORT).show();
+//            return false;
+//        } else if (!eMail.matches("^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$")) {
+//            Toast.makeText(getApplicationContext(),"Email invalid",Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
+        return true;
+    }
+
+    private void registerUser(Boolean validInfo) {
+        if(validInfo) {
+            String mEmail = editTextEmail.getText().toString().trim();
+            String mPassword = editTextPassword.getText().toString().trim();
+
+            progressDialog.setMessage("Registering user...");
+            progressDialog.show();
+
+            mAuth.createUserWithEmailAndPassword(mEmail, mPassword)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Toast.makeText(getApplicationContext(),"Registered successfully", Toast.LENGTH_SHORT).show();
+                                FirebaseUser user = mAuth.getCurrentUser();
+//                                updateUI(user);
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Toast.makeText(getApplicationContext(),"Could not register user", Toast.LENGTH_SHORT).show();
+//                                updateUI(null);
+                            }
+                        }
+                    });
+        }
+    }
+//    TODO: implement the switch to users homepage and set the correct content for that user
+//    private void updateUI(Object o) {
+//        Intent intent = Intent(this, )
 //    }
 
 
