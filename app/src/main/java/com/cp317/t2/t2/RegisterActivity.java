@@ -63,7 +63,6 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Validate information
-                addUser();
                 registerUser(validateInfo());
                 //TODO: open homepage
             }
@@ -150,12 +149,14 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         }
                     });
+            addUser();
         }
     }
 //    TODO: implement the switch to users homepage and set the correct content for that user
-//    private void updateUI(Object o) {
-//        Intent intent = Intent(this, )
-//    }
+private void updateUI(Object o) {
+    Intent intent = new Intent(this, DashboardActivity.class);
+    startActivity(intent);
+}
 
     private void addUser() {
         //getting the values to save

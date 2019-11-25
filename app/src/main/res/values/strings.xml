@@ -34,5 +34,6 @@
     <string name="login">Login</string>
     <string name="createAccount">Dont have an account?</string>
     <string name="no_account">Dont have an account?</string>
+    <string name="tutor_search">Search for tutors</string>
 
 </resources>
