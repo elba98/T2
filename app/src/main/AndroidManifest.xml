@@ -14,6 +14,7 @@
         android:roundIcon="@drawable/t2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SearchByCourseActivity"></activity>
         <activity
             android:name=".HomepageActivity"
             android:label="@string/app_name">
@@ -23,11 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" >
-        </activity>
-        <activity android:name=".LoginActivity" >
-        </activity>
-
+        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>
