@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,8 @@ public class RegisterActivity extends AppCompatActivity {
     private Button register;
     private EditText editTextEmail;
     private EditText editTextPassword;
+    private RadioButton tutorButton;
+    private RadioButton tuteeButton;
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
     DatabaseReference databaseUsers;
@@ -52,9 +55,9 @@ public class RegisterActivity extends AppCompatActivity {
         register = (Button) findViewById(R.id.continue_button);
         editTextEmail = (EditText) findViewById(R.id.email_editText);
         editTextPassword = (EditText) findViewById(R.id.password_editText);
-
+        tutorButton = (RadioButton) findViewById(R.id.tuteeButton);
+        tuteeButton = (RadioButton) findViewById(R.id.tuteeButton);
         users = new ArrayList<>();
-
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,7 +173,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         //Saving the User
         databaseUsers.child(id).setValue(user);
-
 
         //displaying a success toast
         Toast.makeText(this, "User added", Toast.LENGTH_LONG).show();

@@ -184,6 +184,37 @@
             android:ems="10"
             android:inputType="textPassword" />
     </LinearLayout>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:gravity="right|center_horizontal"
+        android:orientation="horizontal">
+
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+
+        <RadioButton
+            android:id="@+id/tutorButton"
+            android:layout_width="136dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Tutor" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+
+        <RadioButton
+            android:id="@+id/tuteeButton"
+            android:layout_width="159dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Tutee" />
+    </RadioGroup>
 
     <Space
         android:layout_width="match_parent"
@@ -198,10 +229,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@android:color/darker_gray"
         android:textSize="18sp" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
 
     <Button
         android:id="@+id/continue_button"
