@@ -35,5 +35,6 @@
     <string name="createAccount">Dont have an account?</string>
     <string name="no_account">Dont have an account?</string>
     <string name="tutor_search">Search for tutors</string>
+    <string name="forgot_password">RESET YOUR PASSWORD</string>
 
 </resources>

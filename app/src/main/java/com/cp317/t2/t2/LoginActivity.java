@@ -3,8 +3,11 @@ package com.cp317.t2.t2;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +32,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,6 +71,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mLoginFormView;
     private boolean loginSuccess;
     private FirebaseUser user2;
+    private Dialog forgotPasswordDialog;
+    private LinearLayout loginLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +86,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.username_textEdit);
         populateAutoComplete();
+        forgotPasswordDialog = new Dialog(this);
+        loginLayout = findViewById(R.id.login_layout);
 
         mPasswordView = (EditText) findViewById(R.id.password_textEdit);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -109,14 +117,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         forgotPassword_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                       forgotPassword();
+                showForgotPasswordPopup(loginLayout);
             }
         });
     }
 
-    private void forgotPassword() {
-        //TODO: create forgot password pop up
-    }
+//    private void forgotPassword() {
+//        //TODO: create forgot password pop up
+//        showForgotPasswordPopup(loginLayout);
+//    }
 
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
@@ -380,6 +389,20 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             Intent intent = new Intent(this, DashboardActivity.class);
             startActivity(intent);
         }
+    }
+
+    public void showForgotPasswordPopup(View v) {
+        Button closeButton;
+        forgotPasswordDialog.setContentView(R.layout.popup_forgot_password);
+        closeButton = (Button) forgotPasswordDialog.findViewById(R.id.close_button);
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                forgotPasswordDialog.dismiss();
+            }
+        });
+        forgotPasswordDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        forgotPasswordDialog.show();
     }
 
     // This method will be invoked when user click android device Back menu at bottom.

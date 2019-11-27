@@ -35,6 +35,13 @@
         android:text="Change Location" />
 
 
+    <Button
+        android:id="@+id/signout_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Signout" />
+
+
     <Space
         android:layout_width="match_parent"
         android:layout_height="91dp" />
@@ -44,5 +51,6 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:text="Back" />
+
 
 </LinearLayout>
