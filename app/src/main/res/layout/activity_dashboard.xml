@@ -9,8 +9,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
         android:orientation="vertical"
-        android:focusableInTouchMode="true">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,26 +39,36 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp" />
+            android:layout_height="20dp" />
 
         <AutoCompleteTextView
             android:id="@+id/search_autoComplete"
-            android:layout_width="331dp"
-            android:layout_height="45dp"
+            android:layout_width="350dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_weight="0"
             android:background="@drawable/edittext_bg"
             android:ems="10"
             android:gravity="center"
             android:importantForAutofill="no"
             android:inputType="text"
+            android:padding="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
             android:text="@string/tutor_search" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
 
         <TextView
             android:id="@+id/textView22"
-            android:layout_width="match_parent"
+            android:layout_width="384dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_gravity="center"
+            android:gravity="center|left"
             android:text="Suggested Tutors"
             android:textColor="@color/t2_orange_dark"
             android:textSize="24sp"
@@ -62,12 +76,12 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="283dp"
+            android:layout_height="420dp"
             android:background="#F2F2F2">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <TextView
@@ -137,15 +151,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp" />
-
-        <Button
-            android:id="@+id/profile_button"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="My Profile" />
+            android:layout_height="5dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -154,22 +160,46 @@
 
             <Button
                 android:id="@+id/tutorHistory_button"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="Tutor History" />
+                android:background="@color/t2_orange_darkest"
+                android:backgroundTint="@color/t2_orange_dark"
+                android:text="Tutor History"
+                android:textSize="12sp" />
 
             <Space
-                android:layout_width="wrap_content"
+                android:layout_width="5dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/profile_button"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/t2_orange_darkest"
+                android:backgroundTint="@color/t2_orange_dark"
+                android:gravity="center"
+                android:text="My Profile"
+                android:textSize="12sp" />
+
+            <Space
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0" />
 
             <Button
                 android:id="@+id/paymentHistory_button"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="Payment History" />
+                android:background="@color/t2_orange_darkest"
+                android:backgroundTint="@color/t2_orange_dark"
+                android:text="Payment History"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
