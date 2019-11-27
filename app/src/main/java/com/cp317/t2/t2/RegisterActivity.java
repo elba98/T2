@@ -148,7 +148,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 // Sign in success, update UI with the signed-in user's information
                                 Toast.makeText(getApplicationContext(),"Registered successfully", Toast.LENGTH_SHORT).show();
                                 FirebaseUser user = mAuth.getCurrentUser();
-                                addUser();
+                                addUser(user.getUid());
                                 updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
@@ -175,7 +175,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 }
 
-    private void addUser() {
+    private void addUser(String Uid) {
         //getting the values to save
         EditText textFirstName = (EditText) findViewById(R.id.firstName_editText);
         EditText textLastName = (EditText) findViewById(R.id.lastName_editText);
@@ -196,13 +196,13 @@ public class RegisterActivity extends AppCompatActivity {
 
         //getting a unique id using push().getKey() method
         //it will create a unique id and we will use it as the Primary Key for our User
-        String id = databaseUsers.push().getKey();
+       // String id = databaseUsers.push().getKey();
 
         //creating an User Object
         User user = new User(eMail, fName, lName, userType, pNumber, pCode);
 
         //Saving the User
-        databaseUsers.child(id).setValue(user);
+        databaseUsers.child(Uid).setValue(user);
 
         //displaying a success toast
         Toast.makeText(this, userType, Toast.LENGTH_LONG).show();
