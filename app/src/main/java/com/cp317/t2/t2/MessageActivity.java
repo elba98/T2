@@ -14,40 +14,6 @@ public class MessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
 
-
-        first =(Button) findViewById(R.id.messageOne);
-        first.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                openChatRoom();
-            }
-        });
-
-        second =(Button) findViewById(R.id.messageTwo);
-        second.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                openChatRoom();
-            }
-        });
-
-        third =(Button) findViewById(R.id.messageThree);
-        third.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                openChatRoom();
-            }
-        });
-
-        fourth =(Button) findViewById(R.id.messageFour);
-        fourth.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                openChatRoom();
-            }
-        });
-
-        back_button =(Button) findViewById(R.id.messageBack_button);
         back_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
