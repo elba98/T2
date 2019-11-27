@@ -8,19 +8,23 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class DashboardActivity extends AppCompatActivity {
     private Button profile, tutorHistory, paymentHistory;
     private ImageView settings;
     private ImageButton chat;
     private TextView person;
-
-//    loadUserInfo();
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        loadUserInfo();
 
         profile = (Button) findViewById(R.id.profile_button);
         tutorHistory = (Button) findViewById(R.id.tutorHistory_button);
@@ -75,22 +79,30 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void loadUserInfo() {
-
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user.getEmail() != null) {
+            String toastText = "Logged in as " + user.getEmail();
+            Toast.makeText(this,toastText, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this,"No display name", Toast.LENGTH_SHORT).show();
+        }
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        if(mAuth.getCurrentUser() != null) {
-//            finish();
-//            Intent intent = new Intent(this, DashboardActivity.class);
-//            startActivity(intent);
-//        }
-//    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(mAuth.getCurrentUser() == null) {
+            finish();
+            Intent intent = new Intent(this, HomepageActivity.class);
+            startActivity(intent);
+        }
+    }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, HomepageActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, HomepageActivity.class);
+//        startActivity(intent);
+        finish();
+        System.exit(0);
     }
 }

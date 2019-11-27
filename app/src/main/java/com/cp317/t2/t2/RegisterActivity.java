@@ -6,13 +6,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -56,8 +53,8 @@ public class RegisterActivity extends AppCompatActivity {
         register = (Button) findViewById(R.id.continue_button);
         editTextEmail = (EditText) findViewById(R.id.email_editText);
         editTextPassword = (EditText) findViewById(R.id.password_editText);
-        tutorButton = (RadioButton) findViewById(R.id.tuteeButton);
-        tuteeButton = (RadioButton) findViewById(R.id.tuteeButton);
+        tutorButton = (RadioButton) findViewById(R.id.tutee_Button);
+        tuteeButton = (RadioButton) findViewById(R.id.tutee_Button);
         users = new ArrayList<>();
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +120,10 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Password must be at least 6 characters long",Toast.LENGTH_SHORT).show();
             return false;
         }
+        if(!tutorButton.isChecked() && !tuteeButton.isChecked()) {
+            Toast.makeText(getApplicationContext(),"You must select to register as a Tutor or Tutee",Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return true;
     }
 
@@ -149,6 +150,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                                     Toast.makeText(RegisterActivity.this,
                                             "User with this email already exist.", Toast.LENGTH_SHORT).show();
+                                    updateUI(null);
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Error registering user", Toast.LENGTH_SHORT).show();
                                     updateUI(null);
@@ -161,6 +163,7 @@ public class RegisterActivity extends AppCompatActivity {
 //    TODO: Set the correct content for that user
     private void updateUI(FirebaseUser user) {
         if(user == null) {
+            progressDialog.hide();
             return;
         } else {
             finish();

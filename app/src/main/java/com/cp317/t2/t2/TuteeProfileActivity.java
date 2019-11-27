@@ -29,7 +29,7 @@ public class TuteeProfileActivity extends AppCompatActivity {
     // This method will be invoked when user click android device Back menu at bottom.
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, HomepageActivity.class);
+        Intent intent = new Intent(this, DashboardActivity.class);
         startActivity(intent);
     }
 
