@@ -163,6 +163,7 @@ public class RegisterActivity extends AppCompatActivity {
         if(user == null) {
             return;
         } else {
+            finish();
             Intent intent = new Intent(this, DashboardActivity.class);
             startActivity(intent);
         }

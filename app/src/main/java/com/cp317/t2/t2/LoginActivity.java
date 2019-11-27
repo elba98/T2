@@ -347,7 +347,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             }
                         }
                     });
-
             return loginSuccess;
         }
 
@@ -357,6 +356,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
+                finish();
                 Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
                 startActivity(intent);
             } else {
@@ -369,6 +369,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected void onCancelled() {
             mAuthTask = null;
             showProgress(false);
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(mAuth.getCurrentUser() != null) {
+            finish();
+            Intent intent = new Intent(this, DashboardActivity.class);
+            startActivity(intent);
         }
     }
 
