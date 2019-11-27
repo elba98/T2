@@ -14,7 +14,7 @@
         completions."
     </string>
     <string name="login_with_your_tutor_credentials">Login with your Tutor credentials</string>
-    <string name="forgot">Forgot your password? "\n"Click Me!</string>
+    <string name="forgot">Forgot your password?</string>
     <string name="get">Get started by creating a new"\n"account below&#8230;</string>
     <string name="email">Email*</string>
     <string name="phone_number">Phone Number</string>
