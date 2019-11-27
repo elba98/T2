@@ -1,55 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ChatRoomActivity">
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center">
 
+    <ImageView
+        android:id="@+id/profileChat"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_alignParentLeft="true"></ImageView>
+    <android.support.v4.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileChat"
+        android:id="@+id/space2"></android.support.v4.widget.Space>
 
 
     <TextView
-        android:id="@+id/person"
         android:layout_width="match_parent"
-        android:layout_height="106dp"
-        android:background="#00801C1C"
-        android:gravity="bottom"
-        android:text="Bob"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="#2C2C2C"
-        android:textSize="25sp" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></Space>
-
-    <TextView
-        android:id="@+id/messageText"
-        android:layout_width="match_parent"
-        android:layout_height="168dp"
-        android:background="#00801C1C"
-        android:gravity="bottom"
-        android:text="Hey, hows it going? Its been too long"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#2C2C2C"
-        android:textSize="18sp" />
+        android:layout_height="wrap_content"
+        android:layout_above="@id/list_of_messages"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/profileChat"
+        android:layout_toEndOf="@id/profileChat"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textSize="30sp"></TextView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:clickable="true"
+        android:foreground="@drawable/send"
+        android:tint="@android:color/white"
+        app:backgroundTint="#FFEB3B"
+        app:fabSize="mini" />
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="343dp"
-        android:layout_height="80dp"
-        android:layout_gravity="bottom"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Type your message here" />
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/fab"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/textInputView">
 
-</android.support.design.widget.CoordinatorLayout>
+        <EditText
+            android:id="@+id/input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Type here..." />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.v4.widget.Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/textInputView"
+        android:id="@+id/space1"></android.support.v4.widget.Space>
+    <ListView
+        android:id="@+id/list_of_messages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/textInputView"
+        android:layout_below="@id/profileChat"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@id/space2"
+        android:layout_alignBottom="@id/space1"
+        android:layout_marginBottom="16dp"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="16dp" />
+
+</RelativeLayout>
