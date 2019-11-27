@@ -6,10 +6,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,7 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-
+import java.lang.*;
 
 
 
@@ -34,8 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button register;
     private EditText editTextEmail;
     private EditText editTextPassword;
-    private RadioButton tutorButton;
-    private RadioButton tuteeButton;
+    private RadioButton radioGroup;
     private ProgressDialog progressDialog;
     private FirebaseAuth mAuth;
     DatabaseReference databaseUsers;
@@ -53,8 +56,6 @@ public class RegisterActivity extends AppCompatActivity {
         register = (Button) findViewById(R.id.continue_button);
         editTextEmail = (EditText) findViewById(R.id.email_editText);
         editTextPassword = (EditText) findViewById(R.id.password_editText);
-        tutorButton = (RadioButton) findViewById(R.id.tutee_Button);
-        tuteeButton = (RadioButton) findViewById(R.id.tutee_Button);
         users = new ArrayList<>();
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +75,8 @@ public class RegisterActivity extends AppCompatActivity {
         EditText textPostalCode = (EditText) findViewById(R.id.postalCode_editText);
         EditText textEmail = (EditText) findViewById(R.id.email_editText);
         EditText textPassword = (EditText) findViewById(R.id.password_editText);
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+
 
         String fName = textFirstName.getText().toString().trim();
         String lName = textLastName.getText().toString().trim();
@@ -120,8 +123,10 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Password must be at least 6 characters long",Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(!tutorButton.isChecked() && !tuteeButton.isChecked()) {
-            Toast.makeText(getApplicationContext(),"You must select to register as a Tutor or Tutee",Toast.LENGTH_SHORT).show();
+
+        if (radioGroup.getCheckedRadioButtonId() == -1)
+        {
+            Toast.makeText(getApplicationContext(),"You must choose a user type",Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -150,7 +155,6 @@ public class RegisterActivity extends AppCompatActivity {
                                 if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                                     Toast.makeText(RegisterActivity.this,
                                             "User with this email already exist.", Toast.LENGTH_SHORT).show();
-                                    updateUI(null);
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Error registering user", Toast.LENGTH_SHORT).show();
                                     updateUI(null);
@@ -163,7 +167,6 @@ public class RegisterActivity extends AppCompatActivity {
 //    TODO: Set the correct content for that user
     private void updateUI(FirebaseUser user) {
         if(user == null) {
-            progressDialog.hide();
             return;
         } else {
             finish();
@@ -176,21 +179,33 @@ public class RegisterActivity extends AppCompatActivity {
         //getting the values to save
         EditText textFirstName = (EditText) findViewById(R.id.firstName_editText);
         EditText textLastName = (EditText) findViewById(R.id.lastName_editText);
+        EditText textPhoneNumber = (EditText) findViewById(R.id.phoneNumber_editText);
+        EditText textPostalCode = (EditText) findViewById(R.id.postalCode_editText);
+        EditText textEmail = (EditText) findViewById(R.id.email_editText);
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+
         String fName = textFirstName.getText().toString().trim();
         String lName = textLastName.getText().toString().trim();
+        String pNumber = textPhoneNumber.getText().toString().trim();
+        String pCode = textPostalCode.getText().toString().trim();
+        String eMail = textEmail.getText().toString().trim();
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+        RadioButton radioButton = (RadioButton) findViewById(selectedId);
+
+        String userType = radioButton.getText().toString();
 
         //getting a unique id using push().getKey() method
         //it will create a unique id and we will use it as the Primary Key for our User
         String id = databaseUsers.push().getKey();
 
         //creating an User Object
-        User user = new User(id, fName, lName);
+        User user = new User(eMail, fName, lName, userType, pNumber, pCode);
 
         //Saving the User
         databaseUsers.child(id).setValue(user);
 
         //displaying a success toast
-        Toast.makeText(this, "User added", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, userType, Toast.LENGTH_LONG).show();
     }
     // This method will be invoked when user click android device Back menu at bottom.
     @Override
