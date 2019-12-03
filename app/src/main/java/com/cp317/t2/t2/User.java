@@ -10,7 +10,18 @@ public class User {
     private String userPostalCode;
     private String userEMail;
     private String userPhoneNumber;
+
+    // Optional parameters entered later
+    private String program, sex, bio;
+    private String[] courses;
+
     public User() {
+    }
+
+    public User(String userFirstName, String userLastName, String program) {
+        this.userFirstName = userFirstName;
+        this.userLastName = userLastName;
+        this.program = program;
     }
 
     public User(String userEMail, String userFirstName, String userLastName, String userType, String userPhoneNumber, String userPostalCode) {
@@ -68,6 +79,38 @@ public class User {
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    public String getProgram() {
+        return program;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public String[] getCourses() {
+        return courses;
+    }
+
+    public void setProgram(String program) {
+        this.program = program;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public void setCourses(String[] courses) {
+        this.courses = courses;
     }
 }
 

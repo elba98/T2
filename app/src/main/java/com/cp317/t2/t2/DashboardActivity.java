@@ -25,12 +25,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class DashboardActivity extends AppCompatActivity {
     private Button profile, tutorHistory, paymentHistory;
     private ImageView settings;
     private ImageButton chat;
     private TextView suggestedUsers;
-    private ListView users;
+    private ListView user_listView;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private DatabaseReference usersDatabase;
 
@@ -109,12 +111,6 @@ public class DashboardActivity extends AppCompatActivity {
         }
     }
 
-    private void setSuggestedUsers() {
-        users = (ListView) findViewById(R.id.users_listView);
-        CustomAdapter customAdapter = new CustomAdapter();
-        users.setAdapter(customAdapter);
-    }
-
     protected void setTitle() {
         try{
             usersDatabase = FirebaseDatabase.getInstance().getReference("users");
@@ -152,39 +148,14 @@ public class DashboardActivity extends AppCompatActivity {
         System.exit(0);
     }
 
-    class CustomAdapter extends BaseAdapter {
+    private void setSuggestedUsers() {
+        User john = new User("elba3790mylaurier.ca", "mitchell", "elbaz", "Tutee",
+                "1234567890", "l1l 1l1");
+        ArrayList<User> userList = new ArrayList<>();
+        userList.add(john);
 
-        @Override
-        public int getCount() {
-            return 1;
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            view = getLayoutInflater().inflate(R.layout.custom_list,null);
-            ImageView imageView = (ImageView) view.findViewById(R.id.avatar_imageView);
-            TextView nameView = (TextView) view.findViewById(R.id.name_textView);
-            TextView programView = (TextView) view.findViewById(R.id.program_textView);
-
-            int[] IMAGES = {R.drawable.prof1, R.drawable.prof2};
-            String[] NAMES = {"user1", "user2"};
-            String[] programs = {"Computer Science", "Psychology"};
-
-            imageView.setImageResource(IMAGES[i]);
-            nameView.setText(NAMES[i]);
-            programView.setText(programs[i]);
-
-            return null;
-        }
+        user_listView = (ListView) findViewById(R.id.users_listView);
+        UserListAdapter adapter = new UserListAdapter(this,R.layout.custom_list, userList);
+        user_listView.setAdapter(adapter);
     }
 }
