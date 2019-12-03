@@ -41,113 +41,46 @@
             android:layout_width="match_parent"
             android:layout_height="20dp" />
 
-        <AutoCompleteTextView
-            android:id="@+id/search_autoComplete"
+        <EditText
+            android:id="@+id/search_editText"
             android:layout_width="350dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_weight="0"
             android:background="@drawable/edittext_bg"
-            android:ems="10"
+            android:hint="@string/tutor_search"
             android:gravity="center"
-            android:importantForAutofill="no"
             android:inputType="text"
             android:padding="10dp"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:paddingRight="10dp"
-            android:paddingBottom="10dp"
-            android:text="@string/tutor_search" />
+            android:paddingBottom="10dp" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="20dp" />
 
         <TextView
-            android:id="@+id/textView22"
+            android:id="@+id/suggestedUsers_textView"
             android:layout_width="384dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center|left"
-            android:text="Suggested Tutors"
             android:textColor="@color/t2_orange_dark"
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="420dp"
-            android:background="#F2F2F2">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <ListView
+                android:id="@+id/users_listView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="John Doe" />
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="John Appleseed" />
-
-                <TextView
-                    android:id="@+id/rick_textView"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="Rick Mcdonald" />
-
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="Foo Bar" />
-
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="Foo Bar" />
-
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="Foo Bar" />
-
-                <TextView
-                    android:id="@+id/textView19"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="Foo Bar" />
-
-                <TextView
-                    android:id="@+id/textView20"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="Foo Bar" />
-
-                <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Foo Bar" />
-            </LinearLayout>
-        </ScrollView>
+                android:layout_height="match_parent" />
+        </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
