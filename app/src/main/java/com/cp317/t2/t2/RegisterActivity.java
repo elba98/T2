@@ -35,7 +35,6 @@ import java.lang.*;
  */
 
 public class RegisterActivity extends AppCompatActivity {
-    private Button register;
     private EditText editTextEmail;
     private EditText editTextPassword;
     private RadioButton radioGroup;
@@ -53,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
-        register = (Button) findViewById(R.id.continue_button);
+        Button register = (Button) findViewById(R.id.continue_button);
         editTextEmail = (EditText) findViewById(R.id.email_editText);
         editTextPassword = (EditText) findViewById(R.id.password_editText);
         users = new ArrayList<>();
@@ -63,7 +62,6 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //Validate information
                 registerUser(validateInfo());
-                //TODO: open homepage
             }
         });
     }
@@ -148,6 +146,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 // Sign in success, update UI with the signed-in user's information
                                 Toast.makeText(getApplicationContext(),"Registered successfully", Toast.LENGTH_SHORT).show();
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                assert user != null;
                                 addUser(user.getUid());
                                 updateUI(user);
                             } else {
@@ -164,16 +163,14 @@ public class RegisterActivity extends AppCompatActivity {
                     });
         }
     }
-//    TODO: Set the correct content for that user
+    //    TODO: Set the correct content for that user
     private void updateUI(FirebaseUser user) {
-        if(user == null) {
-            return;
-        } else {
+        if(user != null) {
             finish();
             Intent intent = new Intent(this, DashboardActivity.class);
             startActivity(intent);
         }
-}
+    }
 
     private void addUser(String Uid) {
         //getting the values to save
@@ -196,7 +193,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         //getting a unique id using push().getKey() method
         //it will create a unique id and we will use it as the Primary Key for our User
-       // String id = databaseUsers.push().getKey();
+        // String id = databaseUsers.push().getKey();
 
         //creating an User Object
         User user = new User(eMail, fName, lName, userType, pNumber, pCode);
