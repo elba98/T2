@@ -25,16 +25,18 @@
                 android:id="@+id/imageView3"
                 android:layout_width="5dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 app:srcCompat="@drawable/t2" />
 
-            <ImageView
-                android:id="@+id/imageView2"
+            <TextView
+                android:id="@+id/welcomeMessage_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="5"
-                app:srcCompat="@color/t2_orange_dark"
-                tools:srcCompat="@color/t2_orange_light" />
+                android:background="@color/t2_orange_light"
+                android:gravity="center"
+                android:text="Welcome"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <Space
@@ -71,9 +73,14 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="420dp"
+            android:background="#3EF1E191"
             android:orientation="vertical">
 
             <ListView

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -31,10 +32,11 @@ public class DashboardActivity extends AppCompatActivity {
     private Button profile, tutorHistory, paymentHistory;
     private ImageView settings;
     private ImageButton chat;
-    private TextView suggestedUsers;
+    private TextView suggestedUsers, welcomeMessage;
     private ListView user_listView;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private DatabaseReference usersDatabase;
+    private ArrayList<User> userList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class DashboardActivity extends AppCompatActivity {
         settings = (ImageView) findViewById(R.id.settings_button);
         chat = (ImageButton) findViewById(R.id.chat_button);
         suggestedUsers = (TextView) findViewById(R.id.suggestedUsers_textView);
+        welcomeMessage = (TextView) findViewById(R.id.welcomeMessage_textView);
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,8 +105,9 @@ public class DashboardActivity extends AppCompatActivity {
     private void loadUserInfo() {
         FirebaseUser user = mAuth.getCurrentUser();
         if(user.getEmail() != null) {
-            String toastText = "Logged in as " + user.getEmail();
-            Toast.makeText(this,toastText, Toast.LENGTH_SHORT).show();
+//            String welcomeText = "Welcome " + user.getDisplayName();
+//            Toast.makeText(this,welcomeText, Toast.LENGTH_SHORT).show();
+//            welcomeMessage.setText(welcomeText);
             setTitle();
             setSuggestedUsers();
         } else {
@@ -129,6 +133,9 @@ public class DashboardActivity extends AppCompatActivity {
                         text = "Suggested Tutees";
                     }
                     suggestedUsers.setText(text);
+
+                    text = "Logged in as " + dataSnapshot.child("userEMail").getValue(String.class);
+                    welcomeMessage.setText(text);
                 }
 
                 @Override
@@ -151,11 +158,17 @@ public class DashboardActivity extends AppCompatActivity {
     private void setSuggestedUsers() {
         User john = new User("elba3790mylaurier.ca", "mitchell", "elbaz", "Tutee",
                 "1234567890", "l1l 1l1");
-        ArrayList<User> userList = new ArrayList<>();
         userList.add(john);
-
         user_listView = (ListView) findViewById(R.id.users_listView);
         UserListAdapter adapter = new UserListAdapter(this,R.layout.custom_list, userList);
         user_listView.setAdapter(adapter);
+        user_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                System.out.println(i);
+                User user = userList.get(i);
+                Toast.makeText(getApplicationContext(),user.getUserFirstName(),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
