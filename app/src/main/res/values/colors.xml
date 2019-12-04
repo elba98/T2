@@ -6,4 +6,6 @@
     <color name="t2_orange_light">#f4e6a2</color>
     <color name="t2_orange_dark">#ffb341</color>
     <color name="t2_orange_darkest">#ffac07</color>
+    <color name="t2_yellow">#FFFACF40</color>
+
 </resources>

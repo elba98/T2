@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="5"
-                android:background="@color/t2_orange_light"
+                android:background="@color/t2_yellow"
                 android:gravity="center"
                 android:text="Welcome"
                 android:textSize="18sp" />
@@ -69,7 +69,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center|left"
-            android:textColor="@color/t2_orange_dark"
+            android:text="Suggested Users"
+            android:textColor="@color/t2_yellow"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -104,10 +105,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@color/t2_orange_darkest"
-                android:backgroundTint="@color/t2_orange_dark"
+                android:background="@color/t2_orange_light"
+                android:backgroundTint="@color/t2_yellow"
                 android:text="Tutor History"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:textColor="@android:color/white" />
 
             <Space
                 android:layout_width="5dp"
@@ -119,11 +121,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@color/t2_orange_darkest"
-                android:backgroundTint="@color/t2_orange_dark"
+                android:background="@color/t2_orange_light"
+                android:backgroundTint="@color/t2_yellow"
                 android:gravity="center"
                 android:text="My Profile"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:textColor="@android:color/white"/>
 
             <Space
                 android:layout_width="5dp"
@@ -136,10 +139,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@color/t2_orange_darkest"
-                android:backgroundTint="@color/t2_orange_dark"
+                android:background="@color/t2_orange_light"
+                android:backgroundTint="@color/t2_yellow"
                 android:text="Payment History"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:textColor="@android:color/white"/>
         </LinearLayout>
 
         <LinearLayout
