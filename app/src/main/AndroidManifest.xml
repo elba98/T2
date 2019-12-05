@@ -31,6 +31,8 @@
         <activity android:name=".TutorProfileActivity"></activity>
         <activity android:name=".ChatRoomActivity"></activity>
         <activity android:name=".MessageActivity"></activity>
+        <activity android:name=".SettingsUserActivity"></activity>
+        <activity android:name=".SettingsPasswordActivity"></activity>
     </application>
 
 </manifest>

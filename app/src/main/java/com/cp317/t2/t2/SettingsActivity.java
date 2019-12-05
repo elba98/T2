@@ -10,7 +10,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingsActivity extends AppCompatActivity {
-    private Button changeName_button, changeEmail_button,changeLocation_button, back_button, signout_button;
+    private Button changeName_button, changeEmail_button,changeLocation_button, back_button, signout_button, userPreferences_button;
     private FirebaseAuth mAuth;
 
     @Override
@@ -24,8 +24,15 @@ public class SettingsActivity extends AppCompatActivity {
         changeLocation_button = findViewById(R.id.changeLocation_button);
         back_button = findViewById(R.id.back_button);
         signout_button = findViewById(R.id.signout_button);
+        userPreferences_button = findViewById(R.id.userPreferences_button);
 
-
+        userPreferences_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingsActivity.this, SettingsUserActivity.class);
+                startActivity(intent);
+            }
+        });
 
         changeName_button.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -23,7 +23,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -44,7 +43,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executor;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -121,11 +119,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
         });
     }
-
-//    private void forgotPassword() {
-//        //TODO: create forgot password pop up
-//        showForgotPasswordPopup(loginLayout);
-//    }
 
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
@@ -394,7 +387,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     public void showForgotPasswordPopup(View v) {
         Button closeButton;
         forgotPasswordDialog.setContentView(R.layout.popup_forgot_password);
-        closeButton = (Button) forgotPasswordDialog.findViewById(R.id.close_button);
+        closeButton = (Button) forgotPasswordDialog.findViewById(R.id.send_button);
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -403,6 +396,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         });
         forgotPasswordDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         forgotPasswordDialog.show();
+
     }
 
     // This method will be invoked when user click android device Back menu at bottom.

@@ -131,9 +131,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/t2_orange_dark"
-                android:backgroundTint="@color/t2_orange_light"
+                android:backgroundTint="@color/t2_yellow"
                 android:gravity="center_vertical|center"
-                android:text="@string/login" />
+                android:text="@string/login"
+                android:textColor="@android:color/white"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

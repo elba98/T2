@@ -136,7 +136,7 @@
                     android:background="@drawable/edittext_bg"
                     android:ems="10"
                     android:importantForAutofill="no"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPostalAddress" />
             </LinearLayout>
 
             <LinearLayout
@@ -164,7 +164,7 @@
                     android:background="@drawable/edittext_bg"
                     android:ems="10"
                     android:importantForAutofill="no"
-                    android:inputType="textPersonName" />
+                    android:inputType="text" />
             </LinearLayout>
 
             <LinearLayout
@@ -192,7 +192,7 @@
                     android:background="@drawable/edittext_bg"
                     android:ems="10"
                     android:importantForAutofill="no"
-                    android:inputType="textPersonName" />
+                    android:inputType="text" />
             </LinearLayout>
 
 
