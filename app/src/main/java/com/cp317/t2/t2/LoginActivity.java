@@ -74,7 +74,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private LinearLayout loginLayout;
     private ProgressDialog progressDialog;
     private FirebaseAuth auth;
-    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -389,16 +388,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     public void showForgotPasswordPopup(View v) {
-        Button sendButton;
-        EditText email_editText;
+        Button send_button;
         forgotPasswordDialog.setContentView(R.layout.popup_forgot_password);
-        sendButton = (Button) forgotPasswordDialog.findViewById(R.id.send_button);
-        email_editText = (EditText) forgotPasswordDialog.findViewById(R.id.email_editText);
-        email = email_editText.getText().toString().trim();
-        sendButton.setOnClickListener(new View.OnClickListener() {
+        send_button = (Button) forgotPasswordDialog.findViewById(R.id.send_button);
+
+        send_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendEmail(email);
+                sendEmail();
                 forgotPasswordDialog.dismiss();
             }
         });
@@ -406,7 +403,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         forgotPasswordDialog.show();
     }
 
-    public void sendEmail(String email) {
+    public void sendEmail() {
+        EditText email_editText;
+        email_editText = (EditText) forgotPasswordDialog.findViewById(R.id.email_editText);
+        String email = email_editText.getText().toString().trim();
+
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Enter your registered email id", Toast.LENGTH_SHORT).show();
             return;
