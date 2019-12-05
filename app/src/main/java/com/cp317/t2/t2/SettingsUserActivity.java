@@ -3,11 +3,9 @@ package com.cp317.t2.t2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -58,15 +56,14 @@ public class SettingsUserActivity extends AppCompatActivity {
         save_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                save_data(validateInfo());
+                save_data();
             }
 
         });
 
     }
 
-    public void save_data(Boolean valid){
-        if(!valid) { return; }
+    public void save_data(){
         try{
 
             firstName_editText = (EditText) findViewById(R.id.firstName_editText);
@@ -150,45 +147,6 @@ public class SettingsUserActivity extends AppCompatActivity {
         catch (Exception e){
             System.out.println(e);
         }
-    }
-
-    private Boolean validateInfo() {
-        EditText textFirstName = (EditText) findViewById(R.id.firstName_editText);
-        EditText textLastName = (EditText) findViewById(R.id.lastName_editText);
-        EditText textPhoneNumber = (EditText) findViewById(R.id.phoneNumber_editText);
-        EditText textPostalCode = (EditText) findViewById(R.id.postalCode_editText);
-
-
-        String fName = textFirstName.getText().toString().trim();
-        String lName = textLastName.getText().toString().trim();
-        String pNumber = textPhoneNumber.getText().toString().trim();
-        String pCode = textPostalCode.getText().toString().trim();
-
-        if(TextUtils.isEmpty((fName))) {
-            Toast.makeText(getApplicationContext(),"First name can not be empty",Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        else if (!fName.matches("[a-zA-Z]+")) {
-            Toast.makeText(getApplicationContext(), "First name must contain letters only", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if(TextUtils.isEmpty((lName))) {
-            Toast.makeText(getApplicationContext(),"Last name can not be empty",Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        else if (!lName.matches("[a-zA-Z]+")) {
-            Toast.makeText(getApplicationContext(), "Last name must contain letters only", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if(!pNumber.matches("[0-9]+")) {
-            Toast.makeText(getApplicationContext(),"Phone number must contain numbers only",Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if(!pCode.matches("^((\\d{5}-\\d{4})|(\\d{5})|([a-zA-Z]\\d[a-zA-Z]\\s\\d[a-zA-Z]\\d))$")) {
-            Toast.makeText(getApplicationContext(),"Postal code must be alpha numeric and contain a space",Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        return true;
     }
 
     // This method will be invoked when user click android device Back menu at bottom.
