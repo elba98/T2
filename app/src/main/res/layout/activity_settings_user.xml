@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:focusableInTouchMode="true">
 
     <TextView
         android:id="@+id/title_textView"
@@ -223,6 +224,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
+                    android:checked="true"
                     android:paddingRight="15dp"
                     tools:checked="true" />
             </LinearLayout>
@@ -249,6 +251,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
+                    android:checked="true"
                     android:paddingRight="15dp"
                     tools:checked="true" />
             </LinearLayout>

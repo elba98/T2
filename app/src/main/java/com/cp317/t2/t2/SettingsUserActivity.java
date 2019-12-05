@@ -81,8 +81,6 @@ public class SettingsUserActivity extends AppCompatActivity {
 
                     String courses = dataSnapshot.child("program").getValue(String.class);
                     courses_editText.setText(courses);
-
-                    Toast.makeText(getApplicationContext(),"Shouldve updated information",Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -95,13 +93,6 @@ public class SettingsUserActivity extends AppCompatActivity {
             System.out.println(e);
         }
     }
-
-
-
-
-
-
-
 
     // This method will be invoked when user click android device Back menu at bottom.
     @Override
