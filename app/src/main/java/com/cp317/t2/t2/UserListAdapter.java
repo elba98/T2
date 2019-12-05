@@ -31,7 +31,6 @@ public class UserListAdapter extends ArrayAdapter<User> {
         String name = firstName + " " + lastName;
         String program = getItem(position).getProgram();
 
-        User user = new User(firstName,lastName,program);
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 

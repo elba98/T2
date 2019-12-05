@@ -196,7 +196,7 @@ public class RegisterActivity extends AppCompatActivity {
         // String id = databaseUsers.push().getKey();
 
         //creating an User Object
-        User user = new User(eMail, fName, lName, userType, pNumber, pCode);
+        User user = new User(Uid, eMail, fName, lName, userType, pNumber, pCode);
 
         //Saving the User
         databaseUsers.child(Uid).setValue(user);
