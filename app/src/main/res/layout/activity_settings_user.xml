@@ -2,273 +2,279 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:focusableInTouchMode="true">
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/title_textView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/user_information"
-        android:textColor="@color/t2_orange_dark"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/title_textView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/user_information"
+            android:textColor="@color/t2_orange_dark"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_weight="1" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/firstName_linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal|center"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/firstName_textView"
-                    android:layout_width="30dp"
+                <LinearLayout
+                    android:id="@+id/firstName_linearLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="@string/first_name_no_star"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:textColor="@android:color/darker_gray" />
-
-                <EditText
-                    android:id="@+id/firstName_editText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
                     android:layout_weight="1"
-                    android:background="@drawable/edittext_bg"
-                    android:ems="10"
-                    android:importantForAutofill="no"
-                    android:inputType="textPersonName" />
+                    android:gravity="center_horizontal|center"
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/firstName_textView"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="@string/first_name_no_star"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textColor="@android:color/darker_gray" />
 
-            <LinearLayout
-                android:id="@+id/lastName_linearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/firstName_editText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_bg"
+                        android:ems="10"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName" />
 
-                <TextView
-                    android:id="@+id/lastName_textView"
-                    android:layout_width="30dp"
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lastName_linearLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="@string/last_name_no_star"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:textColor="@android:color/darker_gray" />
-
-                <EditText
-                    android:id="@+id/lastName_editText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
                     android:layout_weight="1"
-                    android:background="@drawable/edittext_bg"
-                    android:ems="10"
-                    android:importantForAutofill="no"
-                    android:inputType="textPersonName" />
-            </LinearLayout>
+                    android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/phoneNumber_linearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/lastName_textView"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="@string/last_name_no_star"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textColor="@android:color/darker_gray" />
 
-                <TextView
-                    android:id="@+id/phoneNumber_textView"
-                    android:layout_width="30dp"
+                    <EditText
+                        android:id="@+id/lastName_editText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_bg"
+                        android:ems="10"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/phoneNumber_linearLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="@string/phone_number"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:textColor="@android:color/darker_gray" />
-
-                <EditText
-                    android:id="@+id/phoneNumber_editText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
                     android:layout_weight="1"
-                    android:background="@drawable/edittext_bg"
-                    android:ems="10"
-                    android:importantForAutofill="no"
-                    android:inputType="phone" />
-            </LinearLayout>
+                    android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/postalCode_linearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right|center_horizontal"
-                android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/phoneNumber_textView"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="@string/phone_number"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textColor="@android:color/darker_gray" />
 
-                <TextView
-                    android:id="@+id/postalCode_textView"
-                    android:layout_width="30dp"
+                    <EditText
+                        android:id="@+id/phoneNumber_editText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_bg"
+                        android:ems="10"
+                        android:importantForAutofill="no"
+                        android:inputType="phone" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/postalCode_linearLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="@string/postal_code"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:textColor="@android:color/darker_gray" />
-
-                <EditText
-                    android:id="@+id/postalCode_editText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
                     android:layout_weight="1"
-                    android:background="@drawable/edittext_bg"
-                    android:ems="10"
-                    android:importantForAutofill="no"
-                    android:inputType="textPostalAddress" />
-            </LinearLayout>
+                    android:gravity="right|center_horizontal"
+                    android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/program_linearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/postalCode_textView"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="@string/postal_code"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textColor="@android:color/darker_gray" />
 
-                <TextView
-                    android:id="@+id/program_textView"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="Program"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:textColor="@android:color/darker_gray" />
+                    <EditText
+                        android:id="@+id/postalCode_editText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_bg"
+                        android:ems="10"
+                        android:importantForAutofill="no"
+                        android:inputType="textPostalAddress" />
+                </LinearLayout>
 
-                <EditText
-                    android:id="@+id/program_editText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
+                <LinearLayout
+                    android:id="@+id/program_linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/edittext_bg"
-                    android:ems="10"
-                    android:importantForAutofill="no"
-                    android:inputType="text" />
-            </LinearLayout>
+                    android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/courses_linearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/program_textView"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Program"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textColor="@android:color/darker_gray" />
 
-                <TextView
-                    android:id="@+id/courses_textView"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="Courses"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:textColor="@android:color/darker_gray" />
+                    <EditText
+                        android:id="@+id/program_editText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_bg"
+                        android:ems="10"
+                        android:importantForAutofill="no"
+                        android:inputType="text" />
+                </LinearLayout>
 
-                <EditText
-                    android:id="@+id/courses_editText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
+                <LinearLayout
+                    android:id="@+id/add_courses_linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/edittext_bg"
-                    android:ems="10"
-                    android:importantForAutofill="no"
-                    android:inputType="text" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/add_course_textView"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Add Course"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textColor="@android:color/darker_gray" />
+
+                    <EditText
+                        android:id="@+id/add_course_editText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_bg"
+                        android:ems="10"
+                        android:importantForAutofill="no"
+                        android:inputType="text" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/onlinePreference_linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/onlinePreference_textView"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Tutor online"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textColor="@android:color/darker_gray" />
+
+                    <Switch
+                        android:id="@+id/onlinePreference_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:paddingRight="15dp"
+                        tools:checked="true" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/inPersonPreference_linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/inPersonPreference_textView"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Tutor in person"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textColor="@android:color/darker_gray" />
+
+                    <Switch
+                        android:id="@+id/inPersonPreference_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        android:paddingRight="15dp"
+                        tools:checked="true" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/changePassword_button"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/t2_orange_dark"
+                    android:backgroundTint="@color/t2_orange_light"
+                    android:text="@string/change_password"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/save_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Save" />
+
             </LinearLayout>
 
+        </ScrollView>
 
-            <LinearLayout
-                android:id="@+id/onlinePreference_linearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/onlinePreference_textView"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="Tutor online"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:textColor="@android:color/darker_gray" />
-
-                <Switch
-                    android:id="@+id/onlinePreference_switch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:checked="true"
-                    android:paddingRight="15dp"
-                    tools:checked="true" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/inPersonPreference_linearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/inPersonPreference_textView"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="Tutor in person"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat"
-                    android:textColor="@android:color/darker_gray" />
-
-                <Switch
-                    android:id="@+id/inPersonPreference_switch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:checked="true"
-                    android:paddingRight="15dp"
-                    tools:checked="true" />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/changePassword_button"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/t2_orange_dark"
-                android:backgroundTint="@color/t2_orange_light"
-                android:text="@string/change_password"
-                android:textColor="@android:color/white" />
-
-        </LinearLayout>
-
-    </ScrollView>
+    </LinearLayout>
 
 </RelativeLayout>
 

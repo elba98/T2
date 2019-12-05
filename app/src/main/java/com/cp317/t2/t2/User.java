@@ -2,6 +2,9 @@ package com.cp317.t2.t2;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.Arrays;
+import java.util.ArrayList;
+
 
 public class User {
     private String userFirstName;
@@ -13,7 +16,7 @@ public class User {
 
     // Optional parameters entered later
     private String program, sex, bio;
-    private String[] courses;
+    private String courses;
 
     public User() {
     }
@@ -93,7 +96,7 @@ public class User {
         return bio;
     }
 
-    public String[] getCourses() {
+    public String getCourses() {
         return courses;
     }
 
@@ -109,7 +112,7 @@ public class User {
         this.bio = bio;
     }
 
-    public void setCourses(String[] courses) {
+    public void setCourses(String courses) {
         this.courses = courses;
     }
 }
