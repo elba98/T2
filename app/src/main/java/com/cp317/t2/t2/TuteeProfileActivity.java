@@ -46,6 +46,10 @@ public class TuteeProfileActivity extends AppCompatActivity {
             mAuth = FirebaseAuth.getInstance();
             usersDatabase = FirebaseDatabase.getInstance().getReference("users");
             String userId = mAuth.getCurrentUser().getUid();
+            // Check if we were requested to open someone elses profile
+            if(getIntent() != null && getIntent().getStringExtra("uID") != null) {
+                userId = getIntent().getStringExtra("uID");
+            }
             Log.d("UserId:", userId);
             usersDatabase.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
 

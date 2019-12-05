@@ -38,8 +38,23 @@ public class User {
         this.uId = uId;
     }
 
+    public User(String userFirstName, String userLastName, String program) {
+        this.userFirstName = userFirstName;
+        this.userLastName = userLastName;
+        this.program = program;
+    }
+
     public User(String uId, String userEMail, String userFirstName, String userLastName, String userType, String userPhoneNumber, String userPostalCode) {
         this.uId = uId;
+        this.userEMail = userEMail;
+        this.userFirstName = userFirstName;
+        this.userLastName = userLastName;
+        this.userType = userType;
+        this.userPostalCode = userPostalCode;
+        this.userPhoneNumber = userPhoneNumber;
+    }
+
+    public User(String userEMail, String userFirstName, String userLastName, String userType, String userPhoneNumber, String userPostalCode) {
         this.userEMail = userEMail;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;

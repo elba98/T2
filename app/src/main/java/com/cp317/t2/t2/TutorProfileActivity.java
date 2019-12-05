@@ -34,11 +34,14 @@ public class TutorProfileActivity extends AppCompatActivity {
             final TextView programText = (TextView) findViewById(R.id.program);
             final TextView coursesText = (TextView) findViewById(R.id.courses);
 
-
             try{
                 mAuth = FirebaseAuth.getInstance();
                 usersDatabase = FirebaseDatabase.getInstance().getReference("users");
                 String userId = mAuth.getCurrentUser().getUid();
+                // Check if we were requested to open someone elses profile
+                if(getIntent() != null && getIntent().getStringExtra("uID") != null) {
+                    userId = getIntent().getStringExtra("uID");
+                }
                 Log.d("UserId:", userId);
                 usersDatabase.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -63,22 +66,6 @@ public class TutorProfileActivity extends AppCompatActivity {
             catch (Exception e){
                 System.out.println(e);
             }
-//            usersDatabase.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-//
-//                @Override
-//                public void onDataChange(DataSnapshot dataSnapshot) {
-//                    System.out.println(dataSnapshot);
-//                    String fName = dataSnapshot.child("userFirstName").getValue(String.class);
-//                    textName.setText(fName);
-//                }
-//
-//                @Override
-//                public void onCancelled(DatabaseError databaseError) {
-//                    Toast.makeText(getApplicationContext(),"You must choose a user type",Toast.LENGTH_SHORT).show();
-//                }
-//            });
-
-
 
             dashboard.setOnClickListener(new View.OnClickListener() {
                 @Override

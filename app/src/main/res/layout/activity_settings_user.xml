@@ -293,12 +293,21 @@
                     android:text="@string/change_password"
                     android:textColor="@android:color/white" />
 
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_weight="1" />
+
                 <Button
                     android:id="@+id/save_button"
-                    android:layout_width="match_parent"
+                    android:layout_width="175dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:text="Save" />
+                    android:background="@color/t2_orange_light"
+                    android:backgroundTint="@color/t2_orange_dark"
+                    android:text="Save"
+                    android:textColor="@android:color/white" />
 
             </LinearLayout>
 
