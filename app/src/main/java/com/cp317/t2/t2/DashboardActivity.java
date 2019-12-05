@@ -41,7 +41,8 @@ public class DashboardActivity extends AppCompatActivity {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private DatabaseReference usersDatabase;
     private ArrayList<User> userList = new ArrayList<>();
-    private String userType, oppositeUserType;
+    private UserListAdapter adapter;
+    private String oppositeUserType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,9 +96,6 @@ public class DashboardActivity extends AppCompatActivity {
     private void loadUserInfo() {
         FirebaseUser user = mAuth.getCurrentUser();
         if(user.getEmail() != null) {
-//            String welcomeText = "Welcome " + user.getDisplayName();
-//            Toast.makeText(this,welcomeText, Toast.LENGTH_SHORT).show();
-//            welcomeMessage.setText(welcomeText);
             setTitle();
             setSuggestedUsers();
         } else {
@@ -114,6 +112,7 @@ public class DashboardActivity extends AppCompatActivity {
 
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
+                    String userType;
                     System.out.println(dataSnapshot);
                     userType = dataSnapshot.child("userType").getValue(String.class);
                     String text;
@@ -145,38 +144,65 @@ public class DashboardActivity extends AppCompatActivity {
         System.exit(0);
     }
 
+
+
+
+
+
+
+
+
     private void setSuggestedUsers() {
-        // Get users from database (if logged on user is tutor, get tutees and vise-versa)
-
-//        usersDatabase.orderByChild("userType").equalTo("Tutor").limitToFirst(100).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                System.out.println("amount of users = " + dataSnapshot.getChildrenCount());
-//                for(int i=0; i<dataSnapshot.getChildrenCount(); i++) {
-//                    DataSnapshot child = dataSnapshot.getChildren().iterator().next();
-//                    String fName = child.child("userFirstName").getValue(String.class);
-//                    String lName = child.child("userLirstName").getValue(String.class);
-//                    String program = child.child("program").getValue(String.class);
-//                    User user = new User(fName, lName, program);
-//                    userList.add(user);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-
-
-        User john = new User("elba3790mylaurier.ca", "John", "Tutor", "Tutor",
-                "1234567890", "l1l 1l1");
-        User bob = new User("elba3790mylaurier.ca", "Bob", "Tutee", "Tutee",
-                "1234567890", "l1l 1l1");
-        userList.add(john);
-        userList.add(bob);
         user_listView = (ListView) findViewById(R.id.users_listView);
-        UserListAdapter adapter = new UserListAdapter(this,R.layout.custom_list, userList);
+        adapter = new UserListAdapter(this,R.layout.custom_list, userList);
+
+
+        // Get users from database (if logged on user is tutor, get tutees and vise-versa)
+        try{
+            usersDatabase = FirebaseDatabase.getInstance().getReference("users");
+            String userId = mAuth.getCurrentUser().getUid();
+            Log.d("UserId:", userId);
+            usersDatabase.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String userType;
+                    userType = dataSnapshot.child("userType").getValue(String.class);
+                    if(userType.equals("Tutee")) {
+                        oppositeUserType = "Tutor";
+                    } else {
+                        oppositeUserType = "Tutee";
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Toast.makeText(getApplicationContext(),"You must choose a user type",Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+
+
+        // Query database and update adapter
+        Query query = FirebaseDatabase.getInstance().getReference("users").orderByChild("userType").equalTo(oppositeUserType);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    User user = snapshot.getValue(User.class);
+                    userList.add(user);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
         user_listView.setAdapter(adapter);
         user_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
