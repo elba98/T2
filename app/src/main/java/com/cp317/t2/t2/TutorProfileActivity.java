@@ -17,6 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 public class TutorProfileActivity extends AppCompatActivity {
         private Button dashboard;
         private DatabaseReference usersDatabase;
@@ -29,10 +31,9 @@ public class TutorProfileActivity extends AppCompatActivity {
 
             dashboard = (Button) findViewById(R.id.dashboard_button);
             final TextView textName =  (TextView) findViewById(R.id.name);
+            final TextView programText = (TextView) findViewById(R.id.program);
+            final TextView coursesText = (TextView) findViewById(R.id.courses);
 
-
-        // Set name to user's name
-         //   final String userId = getUid();
 
             try{
                 mAuth = FirebaseAuth.getInstance();
@@ -46,6 +47,11 @@ public class TutorProfileActivity extends AppCompatActivity {
                         System.out.println(dataSnapshot);
                         String fName = dataSnapshot.child("userFirstName").getValue(String.class);
                         textName.setText(fName);
+                        String courses = dataSnapshot.child("courses").getValue(String.class);
+                        coursesText.setText(courses);
+                        String program = dataSnapshot.child("program").getValue(String.class);
+                        programText.setText(program);
+
                     }
 
                     @Override

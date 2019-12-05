@@ -99,18 +99,6 @@
             android:layout_height="65dp"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/tutorHistory_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:background="@color/t2_orange_light"
-                android:backgroundTint="@color/t2_yellow"
-                android:text="Tutor History"
-                android:textSize="12sp"
-                android:textColor="@android:color/white" />
-
             <Space
                 android:layout_width="5dp"
                 android:layout_height="match_parent" />
@@ -133,17 +121,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0" />
 
-            <Button
-                android:id="@+id/paymentHistory_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:background="@color/t2_orange_light"
-                android:backgroundTint="@color/t2_yellow"
-                android:text="Payment History"
-                android:textSize="12sp"
-                android:textColor="@android:color/white"/>
         </LinearLayout>
 
         <LinearLayout
