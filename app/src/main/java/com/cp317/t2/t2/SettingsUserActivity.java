@@ -134,7 +134,7 @@ public class SettingsUserActivity extends AppCompatActivity {
                     String program = dataSnapshot.child("program").getValue(String.class);
                     program_editText.setText(program);
 
-                    String courses = dataSnapshot.child("program").getValue(String.class);
+                    String courses = dataSnapshot.child("courses").getValue(String.class);
                     courses_editText.setText(courses);
                 }
 

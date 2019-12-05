@@ -13,21 +13,33 @@ public class User {
     private String userPostalCode;
     private String userEMail;
     private String userPhoneNumber;
+    private String uId;
 
     // Optional parameters entered later
     private String program, sex, bio;
+
+    public String getuId() {
+        return uId;
+    }
+
+    public void setuId(String uId) {
+        this.uId = uId;
+    }
+
     private String courses;
 
     public User() {
     }
 
-    public User(String userFirstName, String userLastName, String program) {
+    public User(String uId, String userFirstName, String userLastName, String program) {
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
         this.program = program;
+        this.uId = uId;
     }
 
-    public User(String userEMail, String userFirstName, String userLastName, String userType, String userPhoneNumber, String userPostalCode) {
+    public User(String uId, String userEMail, String userFirstName, String userLastName, String userType, String userPhoneNumber, String userPostalCode) {
+        this.uId = uId;
         this.userEMail = userEMail;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;

@@ -63,20 +63,7 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        tutorHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Intent intent = new Intent(DashboardActivity.this, TutorProfileActivity.class);
-//                startActivity(intent);
-            }
-        });
-        paymentHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Intent intent = new Intent(DashboardActivity.this, TutorProfileActivity.class);
-//                startActivity(intent);
-            }
-        });
+
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
