@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -71,6 +72,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private FirebaseUser user2;
     private Dialog forgotPasswordDialog;
     private LinearLayout loginLayout;
+    private ProgressDialog progressDialog;
+    private FirebaseAuth auth;
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -385,18 +389,50 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     public void showForgotPasswordPopup(View v) {
-        Button closeButton;
+        Button sendButton;
+        EditText email_editText;
         forgotPasswordDialog.setContentView(R.layout.popup_forgot_password);
-        closeButton = (Button) forgotPasswordDialog.findViewById(R.id.send_button);
-        closeButton.setOnClickListener(new View.OnClickListener() {
+        sendButton = (Button) forgotPasswordDialog.findViewById(R.id.send_button);
+        email_editText = (EditText) forgotPasswordDialog.findViewById(R.id.email_editText);
+        email = email_editText.getText().toString().trim();
+        sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sendEmail(email);
                 forgotPasswordDialog.dismiss();
             }
         });
         forgotPasswordDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         forgotPasswordDialog.show();
+    }
 
+    public void sendEmail(String email) {
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(getApplicationContext(), "Enter your registered email id", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (!email.matches("^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$")) {
+            Toast.makeText(getApplicationContext(), "Email invalid, please fix your email.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Sending Email...");
+        progressDialog.show();
+
+        auth = FirebaseAuth.getInstance();
+        auth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Intent intent = new Intent(LoginActivity.this, SettingsUserActivity.class);
+                            startActivity(intent);
+                        } else {
+                            progressDialog.hide();
+                            Toast.makeText(LoginActivity.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     // This method will be invoked when user click android device Back menu at bottom.

@@ -27,4 +27,11 @@ public class SettingsUserActivity extends AppCompatActivity {
             }
         });
     }
+
+    // This method will be invoked when user click android device Back menu at bottom.
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
 }

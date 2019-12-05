@@ -54,39 +54,24 @@ public class SettingsPasswordActivity extends AppCompatActivity {
         progressDialog.setMessage("Sending Email...");
         progressDialog.show();
 
-        auth.sendPasswordResetEmail(email)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Intent intent = new Intent(SettingsPasswordActivity.this, SettingsUserActivity.class);
-                            startActivity(intent);
-                        } else {
-                            progressDialog.hide();
-                            Toast.makeText(SettingsPasswordActivity.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+        auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Intent intent = new Intent(SettingsPasswordActivity.this, SettingsUserActivity.class);
+                    startActivity(intent);
+                } else {
+                    progressDialog.hide();
+                    Toast.makeText(SettingsPasswordActivity.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 
-//        auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<Void> task) {
-//                        if (task.isSuccessful()) {
-//                            Toast.makeText(SettingsPasswordActivity.this, "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
-////                            try {
-////                                wait(10);
-////                            } catch (Exception e){
-////                                System.out.println(e);
-////                            }
-//                            progressDialog.hide();
-//                            Intent intent = new Intent(SettingsPasswordActivity.this, SettingsUserActivity.class);
-//                            startActivity(intent);
-//                        } else {
-//                            progressDialog.hide();
-//                            Toast.makeText(SettingsPasswordActivity.this, "Failed to send reset email!", Toast.LENGTH_SHORT).show();
-//                        }
-//
-//                    }
-//                });
+    // This method will be invoked when user click android device Back menu at bottom.
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, SettingsUserActivity.class);
+        startActivity(intent);
     }
 }
