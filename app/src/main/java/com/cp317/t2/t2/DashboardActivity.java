@@ -51,8 +51,6 @@ public class DashboardActivity extends AppCompatActivity {
         loadUserInfo();
 
         profile = (Button) findViewById(R.id.profile_button);
-        tutorHistory = (Button) findViewById(R.id.tutorHistory_button);
-        paymentHistory = (Button) findViewById(R.id.paymentHistory_button);
         settings = (ImageView) findViewById(R.id.settings_button);
         chat = (ImageButton) findViewById(R.id.chat_button);
         suggestedUsers = (TextView) findViewById(R.id.suggestedUsers_textView);
