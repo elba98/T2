@@ -208,7 +208,17 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 User user = userList.get(i);
-                Toast.makeText(getApplicationContext(),user.getUserFirstName(),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(),user.getuId(),Toast.LENGTH_SHORT).show();
+
+                //Open their profile
+                Intent intent;
+                if(oppositeUserType.equals("Tutor")) {
+                    intent = new Intent(getApplicationContext(), TutorProfileActivity.class);
+                } else {
+                    intent = new Intent(getApplicationContext(), TuteeProfileActivity.class);
+                }
+                intent.putExtra("uID",user.getuId());
+                startActivity(intent);
             }
         });
     }
