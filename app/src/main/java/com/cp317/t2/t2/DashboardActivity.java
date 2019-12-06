@@ -8,12 +8,16 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Filter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -40,9 +44,10 @@ public class DashboardActivity extends AppCompatActivity {
     private ListView user_listView;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private DatabaseReference usersDatabase;
-    private ArrayList<User> userList = new ArrayList<>();
+    private ArrayList<User> userList = new ArrayList<User>();
     private UserListAdapter adapter;
     private String oppositeUserType;
+    private EditText search_editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +83,8 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
     }
 
@@ -153,8 +160,8 @@ public class DashboardActivity extends AppCompatActivity {
 
 
     private void setSuggestedUsers() {
-        user_listView = (ListView) findViewById(R.id.users_listView);
-        adapter = new UserListAdapter(this,R.layout.custom_list, userList);
+//        user_listView = (ListView) findViewById(R.id.users_listView);
+//        adapter = new UserListAdapter(this,R.layout.custom_list, userList);
 
 
         // Get users from database (if logged on user is tutor, get tutees and vise-versa)
@@ -182,11 +189,14 @@ public class DashboardActivity extends AppCompatActivity {
         catch (Exception e){
             System.out.println(e);
         }
-
+        user_listView = (ListView) findViewById(R.id.users_listView);
+        adapter = new UserListAdapter(DashboardActivity.this,R.layout.custom_list, userList);
+        user_listView.setAdapter(adapter);
 
         // Query database and update adapter
-        Query query = FirebaseDatabase.getInstance().getReference("users").orderByChild("userType").equalTo(oppositeUserType);
-        query.addValueEventListener(new ValueEventListener() {
+        Query query = FirebaseDatabase.getInstance().getReference("users").orderByChild("userType").equalTo("Tutor");
+        //query.addValueEventListener(
+        ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -200,10 +210,10 @@ public class DashboardActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        };
+        query.addValueEventListener(valueEventListener);
 
-
-        user_listView.setAdapter(adapter);
+       // user_listView.setAdapter(adapter);
         user_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -220,6 +230,23 @@ public class DashboardActivity extends AppCompatActivity {
                 intent.putExtra("uID",user.getuId());
                 startActivity(intent);
             }
+        });
+
+        search_editText = (EditText) findViewById(R.id.search_editText);
+
+        search_editText.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+                // When user changed the Text
+                DashboardActivity.this.adapter.getFilter().filter(cs);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) { }
+
+            @Override
+            public void afterTextChanged(Editable arg0) {}
         });
     }
 }

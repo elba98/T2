@@ -7,21 +7,45 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class UserListAdapter extends ArrayAdapter<User> {
+public class UserListAdapter extends ArrayAdapter<User> implements Filterable {
 
     private Context mContext;
     int mResource;
+    ValueFilter valueFilter;
+    ArrayList<User> userList;
+    ArrayList<User> userFilterList;
+
 
     public UserListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<User> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
+        userList = objects;
+        userFilterList = userList;
     }
+
+    @Override
+    public int getCount() {
+        return userList.size();
+    }
+
+    @Override
+    public User getItem(int i) {
+        return userList.get(i);
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return i;
+    }
+
 
     @NonNull
     @Override
@@ -45,5 +69,68 @@ public class UserListAdapter extends ArrayAdapter<User> {
         return convertView;
     }
 
+//    @Override
+//    public Filter getFilter() {
+//        return object : Filter() {
+//            override fun publishResults(charSequence: CharSequence?, filterResults: Filter.FilterResults) {
+//                mPois = filterResults.values as List<PoiDao>
+//                        notifyDataSetChanged()
+//            }
+//
+//            override fun performFiltering(charSequence: CharSequence?): Filter.FilterResults {
+//                val queryString = charSequence?.toString()?.toLowerCase()
+//
+//                val filterResults = Filter.FilterResults()
+//                filterResults.values = if (queryString==null || queryString.isEmpty())
+//                    allPois
+//                else
+//                    allPois.filter {
+//                    it.name.toLowerCase().contains(queryString) ||
+//                            it.city.toLowerCase().contains(queryString) ||
+//                            it.category_name.toLowerCase().contains(queryString)
+//                }
+//                return filterResults
+//            }
+//        }
+//    }
 
+    @Override
+    public Filter getFilter() {
+        if (valueFilter == null) {
+            valueFilter = new ValueFilter();
+        }
+        return valueFilter;
+    }
+
+    private class ValueFilter extends Filter {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults results = new FilterResults();
+
+            if (constraint != null && constraint.length() > 0) {
+                ArrayList<User> filterList = new ArrayList<User>();
+                for (int i = 0; i < userFilterList.size(); i++) {
+                    if ((userFilterList.get(i).getUserFirstName().toUpperCase())
+                            .contains(constraint.toString().toUpperCase())) {
+                        User user = userFilterList.get(i);
+                        filterList.add(user);
+                    }
+                }
+                results.count = filterList.size();
+                results.values = filterList;
+            } else {
+                results.count = userFilterList.size();
+                results.values = userFilterList;
+            }
+            return results;
+
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint,
+                                      FilterResults results) {
+            userList = (ArrayList<User>) results.values;
+            notifyDataSetChanged();
+        }
+    }
 }

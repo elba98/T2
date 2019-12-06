@@ -14,7 +14,6 @@ public class User {
     private String userEMail;
     private String userPhoneNumber;
     private String uId;
-
     // Optional parameters entered later
     private String program, sex, bio;
 
