@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -64,13 +66,17 @@ public class RegisterActivity extends AppCompatActivity {
                 registerUser(validateInfo());
             }
         });
+
+        EditText textPhoneNumber = (EditText) findViewById(R.id.phoneNumber_editText);
+        textPhoneNumber.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+
     }
 
     private Boolean validateInfo() {
         EditText textFirstName = (EditText) findViewById(R.id.firstName_editText);
         EditText textLastName = (EditText) findViewById(R.id.lastName_editText);
-        EditText textPhoneNumber = (EditText) findViewById(R.id.phoneNumber_editText);
         EditText textPostalCode = (EditText) findViewById(R.id.postalCode_editText);
+        EditText textPhoneNumber = (EditText) findViewById(R.id.phoneNumber_editText);
         EditText textEmail = (EditText) findViewById(R.id.email_editText);
         EditText textPassword = (EditText) findViewById(R.id.password_editText);
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
@@ -78,8 +84,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         String fName = textFirstName.getText().toString().trim();
         String lName = textLastName.getText().toString().trim();
-        String pNumber = textPhoneNumber.getText().toString().trim();
         String pCode = textPostalCode.getText().toString().trim();
+        String pNumber = textPhoneNumber.getText().toString().trim();
         String eMail = textEmail.getText().toString().trim();
         String password = textPassword.getText().toString().trim();
 
@@ -99,11 +105,11 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Last name must contain letters only", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(!pNumber.matches("[0-9]+")) {
-            Toast.makeText(getApplicationContext(),"Phone number must contain numbers only",Toast.LENGTH_SHORT).show();
+        if(pNumber.length() != 14 && pNumber.length() != 16) {
+            Toast.makeText(getApplicationContext(),"Please check your phone number",Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(!pCode.matches("^((\\d{5}-\\d{4})|(\\d{5})|([a-zA-Z]\\d[a-zA-Z]\\s\\d[a-zA-Z]\\d))$")) {
+        if(!pCode.matches("^((\\d{5}-\\d{4})|(\\d{5})|([a-zA-Z]\\d[a-zA-Z]\\s?\\-?\\d[a-zA-Z]\\d))$")) {
             Toast.makeText(getApplicationContext(),"Postal code must be alpha numeric and contain a space",Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -154,6 +160,9 @@ public class RegisterActivity extends AppCompatActivity {
                                 if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                                     Toast.makeText(RegisterActivity.this,
                                             "User with this email already exist.", Toast.LENGTH_SHORT).show();
+                                    progressDialog.hide();
+                                    View focusView = editTextEmail;
+                                    focusView.requestFocus();
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Error registering user", Toast.LENGTH_SHORT).show();
                                     updateUI(null);
@@ -163,7 +172,6 @@ public class RegisterActivity extends AppCompatActivity {
                     });
         }
     }
-    //    TODO: Set the correct content for that user
     private void updateUI(FirebaseUser user) {
         if(user != null) {
             finish();

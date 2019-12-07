@@ -3,6 +3,7 @@ package com.cp317.t2.t2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -45,6 +46,9 @@ public class SettingsUserActivity extends AppCompatActivity {
 
         fillFieldsFromDatabase();
 
+        phoneNumber_editText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+
+
         changePassword_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,7 +58,6 @@ public class SettingsUserActivity extends AppCompatActivity {
         });
 
         save_button = (Button) findViewById(R.id.save_button);
-
         save_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -184,7 +187,7 @@ public class SettingsUserActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Phone number must contain numbers only",Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(!pCode.matches("^((\\d{5}-\\d{4})|(\\d{5})|([a-zA-Z]\\d[a-zA-Z]\\s\\d[a-zA-Z]\\d))$")) {
+        if(!pCode.matches("^((\\d{5}-\\d{4})|(\\d{5})|([a-zA-Z]\\d[a-zA-Z]\\s?\\-?\\d[a-zA-Z]\\d))$")) {
             Toast.makeText(getApplicationContext(),"Postal code must be alpha numeric and contain a space",Toast.LENGTH_SHORT).show();
             return false;
         }

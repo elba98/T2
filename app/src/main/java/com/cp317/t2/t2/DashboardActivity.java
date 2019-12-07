@@ -249,4 +249,6 @@ public class DashboardActivity extends AppCompatActivity {
             public void afterTextChanged(Editable arg0) {}
         });
     }
+
+    //TODO: Save scroll location and restore upon returning to view
 }
