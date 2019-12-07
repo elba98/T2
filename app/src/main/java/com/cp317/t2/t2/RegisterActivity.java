@@ -105,19 +105,21 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Last name must contain letters only", Toast.LENGTH_SHORT).show();
             return false;
         }
+        if (TextUtils.isEmpty(eMail)) {
+            Toast.makeText(getApplicationContext(),"Email must not be empty",Toast.LENGTH_SHORT).show();
+            return false;
+//        } else if (!eMail.matches("^\\w+?.+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$")) {
+        } else if (!eMail.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")) {
+
+            Toast.makeText(getApplicationContext(),"Email invalid",Toast.LENGTH_SHORT).show();
+            return false;
+        }
         if(pNumber.length() != 14 && pNumber.length() != 16) {
             Toast.makeText(getApplicationContext(),"Please check your phone number",Toast.LENGTH_SHORT).show();
             return false;
         }
         if(!pCode.matches("^((\\d{5}-\\d{4})|(\\d{5})|([a-zA-Z]\\d[a-zA-Z]\\s?\\-?\\d[a-zA-Z]\\d))$")) {
             Toast.makeText(getApplicationContext(),"Postal code must be alpha numeric and contain a space",Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if (TextUtils.isEmpty(eMail)) {
-            Toast.makeText(getApplicationContext(),"Email must not be empty",Toast.LENGTH_SHORT).show();
-            return false;
-        } else if (!eMail.matches("^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$")) {
-            Toast.makeText(getApplicationContext(),"Email invalid",Toast.LENGTH_SHORT).show();
             return false;
         }
         if (TextUtils.isEmpty(password)) {
