@@ -14,19 +14,12 @@ public class User {
     private String userEMail;
     private String userPhoneNumber;
     private String uId;
+
     // Optional parameters entered later
     private String program, sex, bio;
-
-    public String getuId() {
-        return uId;
-    }
-
-    public void setuId(String uId) {
-        this.uId = uId;
-    }
-
     private String courses;
 
+    // Constructors
     public User() {
     }
 
@@ -62,6 +55,8 @@ public class User {
         this.userPhoneNumber = userPhoneNumber;
     }
 
+    // Getters & Setters
+
     public String getUserPostalCode() {
         return userPostalCode;
     }
@@ -82,9 +77,7 @@ public class User {
         return userPhoneNumber;
     }
 
-    public void setUserPhoneNumber(String userPhoneNumber) {
-        this.userPhoneNumber = userPhoneNumber;
-    }
+    public void setUserPhoneNumber(String userPhoneNumber) { this.userPhoneNumber = userPhoneNumber; }
 
     public String getUserFirstName() {
         return userFirstName;
@@ -140,6 +133,14 @@ public class User {
 
     public void setCourses(String courses) {
         this.courses = courses;
+    }
+
+    public String getuId() {
+        return uId;
+    }
+
+    public void setuId(String uId) {
+        this.uId = uId;
     }
 }
 
