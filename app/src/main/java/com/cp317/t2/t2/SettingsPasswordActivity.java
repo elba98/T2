@@ -46,7 +46,7 @@ public class SettingsPasswordActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(getApplicationContext(), "Enter your registered email id", Toast.LENGTH_SHORT).show();
             return;
-        } else if (!email.matches("^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$")) {
+        } else if (!email.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")) {
             Toast.makeText(getApplicationContext(), "Email invalid, please fix your email.", Toast.LENGTH_SHORT).show();
             return;
         }
