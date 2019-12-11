@@ -21,6 +21,7 @@ public class UserListAdapter extends ArrayAdapter<User> implements Filterable {
     ValueFilter valueFilter;
     ArrayList<User> userList;
     ArrayList<User> userFilterList;
+    String searchType;
 
 
     public UserListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<User> objects) {
@@ -94,6 +95,14 @@ public class UserListAdapter extends ArrayAdapter<User> implements Filterable {
 //        }
 //    }
 
+    public String getSearchType() {
+        return searchType;
+    }
+
+    public void setSearchType(String searchType) {
+        this.searchType = searchType;
+    }
+
     @Override
     public Filter getFilter() {
         if (valueFilter == null) {
@@ -110,10 +119,24 @@ public class UserListAdapter extends ArrayAdapter<User> implements Filterable {
             if (constraint != null && constraint.length() > 0) {
                 ArrayList<User> filterList = new ArrayList<User>();
                 for (int i = 0; i < userFilterList.size(); i++) {
-                    if ((userFilterList.get(i).getUserFirstName().toUpperCase())
-                            .contains(constraint.toString().toUpperCase())) {
-                        User user = userFilterList.get(i);
-                        filterList.add(user);
+                    if(searchType.equals("name")){
+                        if ((userFilterList.get(i).getUserFirstName().toUpperCase())
+                                .startsWith(constraint.toString().toUpperCase())) {
+                            User user = userFilterList.get(i);
+                            filterList.add(user);
+                        }
+                    } else if(searchType.equals("course")){
+                        if (userFilterList.get(i).getCourses()!=null && (userFilterList.get(i).getCourses().toUpperCase())
+                                .contains(constraint.toString().toUpperCase())) {
+                            User user = userFilterList.get(i);
+                            filterList.add(user);
+                        }
+                    } else if(searchType.equals("program")){
+                        if (userFilterList.get(i).getProgram()!=null && (userFilterList.get(i).getProgram().toUpperCase())
+                                .startsWith(constraint.toString().toUpperCase())) {
+                            User user = userFilterList.get(i);
+                            filterList.add(user);
+                        }
                     }
                 }
                 results.count = filterList.size();

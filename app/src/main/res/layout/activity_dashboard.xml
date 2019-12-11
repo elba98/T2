@@ -39,9 +39,40 @@
                 android:textSize="18sp" />
         </LinearLayout>
 
-        <Space
+        <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="35dp"
+            android:gravity="right|center_horizontal"
+            android:orientation="horizontal">
+
+
+
+
+
+                <RadioButton
+                    android:id="@+id/byCourse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="course" />
+
+                <RadioButton
+                    android:id="@+id/byName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="name"
+                    android:checked="true"/>
+
+                <RadioButton
+                    android:id="@+id/byProgram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="program" />
+
+        </RadioGroup>
 
         <EditText
             android:id="@+id/search_editText"

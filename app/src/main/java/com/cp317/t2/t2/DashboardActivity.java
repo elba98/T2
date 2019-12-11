@@ -21,6 +21,8 @@ import android.widget.Filter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +50,7 @@ public class DashboardActivity extends AppCompatActivity {
     private UserListAdapter adapter;
     private String oppositeUserType;
     private EditText search_editText;
+    private RadioGroup radioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,7 @@ public class DashboardActivity extends AppCompatActivity {
         chat = (ImageButton) findViewById(R.id.chat_button);
         suggestedUsers = (TextView) findViewById(R.id.suggestedUsers_textView);
         welcomeMessage = (TextView) findViewById(R.id.welcomeMessage_textView);
+
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +108,6 @@ public class DashboardActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         if(user.getEmail() != null) {
             setTitle();
-            setSuggestedUsers();
         } else {
             Toast.makeText(this,"No display name", Toast.LENGTH_SHORT).show();
         }
@@ -115,8 +118,8 @@ public class DashboardActivity extends AppCompatActivity {
             usersDatabase = FirebaseDatabase.getInstance().getReference("users");
             String userId = mAuth.getCurrentUser().getUid();
             Log.d("UserId:", userId);
-            usersDatabase.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-
+            Query query = FirebaseDatabase.getInstance().getReference("users").child(userId);
+            ValueEventListener valueEventListener = new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     String userType;
@@ -125,20 +128,26 @@ public class DashboardActivity extends AppCompatActivity {
                     String text;
                     if(userType.equals("Tutee")) {
                         text = "Suggested Tutors";
+                        oppositeUserType = "Tutor";
                     } else {
+                        oppositeUserType = "Tutee";
                         text = "Suggested Tutees";
                     }
                     suggestedUsers.setText(text);
 
                     text = "Logged in as " + dataSnapshot.child("userEMail").getValue(String.class);
                     welcomeMessage.setText(text);
+                    setSuggestedUsers();
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
                     Toast.makeText(getApplicationContext(),"You must choose a user type",Toast.LENGTH_SHORT).show();
                 }
-            });
+
+            };
+            query.addValueEventListener(valueEventListener);
+            //setSuggestedUsers();
         }
         catch (Exception e){
             System.out.println(e);
@@ -160,45 +169,16 @@ public class DashboardActivity extends AppCompatActivity {
 
 
     private void setSuggestedUsers() {
-//        user_listView = (ListView) findViewById(R.id.users_listView);
-//        adapter = new UserListAdapter(this,R.layout.custom_list, userList);
-
-
-        // Get users from database (if logged on user is tutor, get tutees and vise-versa)
-        try{
-            usersDatabase = FirebaseDatabase.getInstance().getReference("users");
-            String userId = mAuth.getCurrentUser().getUid();
-            Log.d("UserId:", userId);
-            usersDatabase.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    String userType;
-                    userType = dataSnapshot.child("userType").getValue(String.class);
-                    if(userType.equals("Tutee")) {
-                        oppositeUserType = "Tutor";
-                    } else {
-                        oppositeUserType = "Tutee";
-                    }
-                }
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Toast.makeText(getApplicationContext(),"You must choose a user type",Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-        catch (Exception e){
-            System.out.println(e);
-        }
         user_listView = (ListView) findViewById(R.id.users_listView);
         adapter = new UserListAdapter(DashboardActivity.this,R.layout.custom_list, userList);
         user_listView.setAdapter(adapter);
 
         // Query database and update adapter
-        Query query = FirebaseDatabase.getInstance().getReference("users").orderByChild("userType").equalTo("Tutor");
-        //query.addValueEventListener(
-        ValueEventListener valueEventListener = new ValueEventListener() {
+        Query query = FirebaseDatabase.getInstance().getReference("users").orderByChild("userType").equalTo(oppositeUserType);
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                userList.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
                     userList.add(user);
@@ -210,14 +190,12 @@ public class DashboardActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        };
-        query.addValueEventListener(valueEventListener);
+        });
 
-       // user_listView.setAdapter(adapter);
         user_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                User user = userList.get(i);
+                User user = adapter.userList.get(i);
 //                Toast.makeText(getApplicationContext(),user.getuId(),Toast.LENGTH_SHORT).show();
 
                 //Open their profile
@@ -239,6 +217,11 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
                 // When user changed the Text
+                RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+                int selectedId = radioGroup.getCheckedRadioButtonId();
+                RadioButton radioButton = (RadioButton) findViewById(selectedId);
+                String searchType = radioButton.getText().toString();
+                DashboardActivity.this.adapter.setSearchType(searchType);
                 DashboardActivity.this.adapter.getFilter().filter(cs);
             }
 
