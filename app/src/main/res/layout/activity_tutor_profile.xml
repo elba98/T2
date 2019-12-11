@@ -69,12 +69,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Online" />
+
         <TextView
             android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Credentials"
-            android:textStyle="bold"/>
+            android:text="Courses"
+            android:textStyle="bold" />
         <TextView
             android:id="@+id/courses"
             android:layout_marginBottom="10dp"

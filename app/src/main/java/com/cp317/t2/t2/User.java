@@ -16,7 +16,7 @@ public class User {
     private String uId;
 
     // Optional parameters entered later
-    private String program, sex, bio;
+    private String program, sex, bio, school;
     private String courses;
 
     // Constructors
@@ -142,5 +142,9 @@ public class User {
     public void setuId(String uId) {
         this.uId = uId;
     }
+
+    public String getSchool() { return school; }
+
+    public void setSchool(String school) { this.school = school; }
 }
 

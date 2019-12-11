@@ -3,13 +3,13 @@ package com.cp317.t2.t2;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -51,14 +51,36 @@ public class CourseListAdapter extends ArrayAdapter<String> implements Filterabl
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         String course = getItem(position);
+        final int pos = position;
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
-        TextView tvCourse = (TextView) convertView.findViewById(R.id.course_textView);
+        final TextView tvCourse = (TextView) convertView.findViewById(R.id.course_editText);
         //TODO: create layout for this view
 
         tvCourse.setText(course);
+
+        tvCourse.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                String course = tvCourse.getText().toString().trim();
+                if(!courseList.contains(course)) {
+                    courseList.add(course);
+                    courseList.remove(pos);
+                    notifyDataSetChanged();
+                }
+            }
+        });
+
+        FloatingActionButton delete_button = (FloatingActionButton) convertView.findViewById(R.id.delete_button);
+        delete_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                courseList.remove(pos);
+                notifyDataSetChanged();
+            }
+        });
 
         return convertView;
     }

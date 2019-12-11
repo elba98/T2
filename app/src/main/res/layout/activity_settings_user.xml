@@ -182,8 +182,10 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="142dp"
+                        android:layout_width="145dp"
                         android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
@@ -202,6 +204,7 @@
                             android:layout_gravity="center"
                             android:clickable="true"
                             app:backgroundTint="@color/t2_yellow"
+                            app:fabSize="mini"
                             app:srcCompat="@android:drawable/ic_input_add" />
                     </LinearLayout>
 
@@ -239,6 +242,36 @@
 
                     <EditText
                         android:id="@+id/work_editText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_bg"
+                        android:ems="10"
+                        android:importantForAutofill="no"
+                        android:inputType="textPersonName" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/school_linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/school_textView"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="School/Institution"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat"
+                        android:textColor="@android:color/darker_gray" />
+
+                    <EditText
+                        android:id="@+id/school_editText"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:layout_weight="1"
