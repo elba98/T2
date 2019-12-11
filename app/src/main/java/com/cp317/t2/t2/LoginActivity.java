@@ -81,9 +81,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         setContentView(R.layout.activity_login);
         // Set up tutor vs tutee in phrase
         Intent intent = getIntent();
-        String userType = intent.getStringExtra("userType");
+        //String userType = intent.getStringExtra("userType");
         TextView phrase = (TextView) findViewById(R.id.loginText_textView);
-        phrase.setText("Login with your "+userType+" credentials");
+        phrase.setText("Login with your credentials");
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.username_textEdit);
         populateAutoComplete();

@@ -120,7 +120,8 @@ public class UserListAdapter extends ArrayAdapter<User> implements Filterable {
                 ArrayList<User> filterList = new ArrayList<User>();
                 for (int i = 0; i < userFilterList.size(); i++) {
                     if(searchType.equals("name")){
-                        if ((userFilterList.get(i).getUserFirstName().toUpperCase())
+                        String name = userFilterList.get(i).getUserFirstName().toUpperCase() +" "+ userFilterList.get(i).getUserLastName().toUpperCase();
+                        if (name
                                 .startsWith(constraint.toString().toUpperCase())) {
                             User user = userFilterList.get(i);
                             filterList.add(user);

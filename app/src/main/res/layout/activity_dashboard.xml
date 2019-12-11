@@ -39,6 +39,16 @@
                 android:textSize="18sp" />
         </LinearLayout>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="14dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Search by:" />
+
         <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="match_parent"
@@ -57,13 +67,13 @@
                     android:layout_weight="1"
                     android:text="course" />
 
-                <RadioButton
-                    android:id="@+id/byName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="name"
-                    android:checked="true"/>
+            <RadioButton
+                android:id="@+id/byName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="name" />
 
                 <RadioButton
                     android:id="@+id/byProgram"
@@ -92,7 +102,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="13dp" />
 
         <TextView
             android:id="@+id/suggestedUsers_textView"
@@ -107,51 +117,18 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="5dp" />
+            android:layout_height="20dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="420dp"
-            android:background="#3EF1E191"
+            android:layout_height="363dp"
+
             android:orientation="vertical">
 
             <ListView
                 android:id="@+id/users_listView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="5dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:orientation="horizontal">
-
-            <Space
-                android:layout_width="5dp"
-                android:layout_height="match_parent" />
-
-            <Button
-                android:id="@+id/profile_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:background="@color/t2_orange_light"
-                android:backgroundTint="@color/t2_yellow"
-                android:gravity="center"
-                android:text="My Profile"
-                android:textSize="12sp"
-                android:textColor="@android:color/white"/>
-
-            <Space
-                android:layout_width="5dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -167,10 +144,18 @@
                 android:clickable="true"
                 app:srcCompat="@drawable/settings" />
 
-            <Space
-                android:layout_width="250dp"
+            <Button
+                android:id="@+id/profile_button"
+                android:layout_width="181dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/t2_orange_light"
+                android:backgroundTint="@color/t2_yellow"
+                android:gravity="center"
+                android:text="My Profile"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
 
             <ImageButton
                 android:id="@+id/chat_button"

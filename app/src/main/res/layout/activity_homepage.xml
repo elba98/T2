@@ -37,27 +37,13 @@
         android:backgroundTint="@color/t2_yellow"
         android:elevation="0dp"
         android:gravity="center"
-        android:text="@string/tutorLogin"
+        android:text="Login"
         android:textAlignment="center"
         android:textColor="@android:color/white" />
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="10dp" />
-
-    <Button
-        android:id="@+id/tuteeLogin_button"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="175dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@color/t2_orange_light"
-        android:backgroundTint="@color/t2_yellow"
-        android:elevation="0dp"
-        android:gravity="center"
-        android:text="@string/tuteeLogin"
-        android:textAlignment="center"
-        android:textColor="@android:color/white" />
 
     <Space
         android:layout_width="match_parent"

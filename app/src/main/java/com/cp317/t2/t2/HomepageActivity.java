@@ -19,7 +19,7 @@ public class HomepageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_homepage);
 
         tutorLogin_Button = (Button) findViewById(R.id.tutorLogin_button);
-        tuteeLogin_Button = (Button) findViewById(R.id.tuteeLogin_button);
+        //tuteeLogin_Button = (Button) findViewById(R.id.tuteeLogin_button);
         register_Button = (Button) findViewById(R.id.register_button);
         tutorLogin_Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,12 +27,12 @@ public class HomepageActivity extends AppCompatActivity {
                 openLoginActivity("Tutor");
             }
         });
-        tuteeLogin_Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openLoginActivity("Tutee");
-            }
-        });
+//        tuteeLogin_Button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openLoginActivity("Tutee");
+//            }
+//        });
         register_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
